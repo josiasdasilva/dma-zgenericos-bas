@@ -1,6 +1,6 @@
 specVersion: '1.0'
 metadata:
-  name: zcockpit
+  name: zgenericos
 type: application
 resources:
   configuration:

@@ -1,5 +1,5 @@
 sap.ui.define([
-	"dma/zcockpit/controller/BaseController",
+	"dma/zgenericos/controller/BaseController",
 	"sap/ui/Device",
 	"sap/ui/core/routing/History",
 	"sap/ui/core/Fragment",
@@ -9,7 +9,7 @@ sap.ui.define([
 	"sap/ui/model/json/JSONModel"
 ], function (BaseController, Device, History, Fragment, Token, JSONModel, Filter, FilterOperator) {
 	"use strict";
-	return BaseController.extend("dma.zcockpit.controller.Commod_Busca", {
+	return BaseController.extend("dma.zgenericos.controller.Commod_Busca", {
 		onInit: function () {
 			this.getRouter().getRoute("commod_busca").attachPatternMatched(this._onMasterMatched, this);
 			//this.habilitaBotaoPedido();
@@ -137,7 +137,7 @@ sap.ui.define([
 		/* Value Help UF */
 		onF4UF: function (oEvent) {
 			if (!this._F4UFDialog) {
-				this._F4UFDialog = sap.ui.xmlfragment("dma.zcockpit.view.fragment.uf", this);
+				this._F4UFDialog = sap.ui.xmlfragment("dma.zgenericos.view.fragment.uf", this);
 				this.getView().addDependent(this._F4UFDialog);
 			}
 
@@ -212,7 +212,7 @@ sap.ui.define([
 		onF4grupoLojas: function (oEvent) {
 			// create value help dialog
 			if (!this._F4grupoLojasDialog) {
-				this._F4grupoLojasDialog = sap.ui.xmlfragment("dma.zcockpit.view.fragment.grupoLojas", this);
+				this._F4grupoLojasDialog = sap.ui.xmlfragment("dma.zgenericos.view.fragment.grupoLojas", this);
 				this.getView().addDependent(this._F4grupoLojasDialog);
 			}
 
@@ -312,7 +312,7 @@ sap.ui.define([
 		onF4Lojas: function (oEvent) {
 			// create value help dialog
 			if (!this._F4LojasDialog) {
-				this._F4LojasDialog = sap.ui.xmlfragment("dma.zcockpit.view.fragment.lojas", this);
+				this._F4LojasDialog = sap.ui.xmlfragment("dma.zgenericos.view.fragment.lojas", this);
 				this.getView().addDependent(this._F4LojasDialog);
 			}
 
@@ -412,7 +412,7 @@ sap.ui.define([
 			this.inputId = oEvent.getSource().getId();
 			// create value help dialog
 			if (!this._F4compradorDialog) {
-				this._F4compradorDialog = sap.ui.xmlfragment("dma.zcockpit.view.fragment.comprador", this);
+				this._F4compradorDialog = sap.ui.xmlfragment("dma.zgenericos.view.fragment.comprador", this);
 				this.getView().addDependent(this._F4compradorDialog);
 			}
 			// open value help dialog filtered by the input value
@@ -462,7 +462,7 @@ sap.ui.define([
 			this.inputId = oEvent.getSource().getId();
 			// create value help dialog
 			if (!this._F4fornecedorDialog) {
-				this._F4fornecedorDialog = sap.ui.xmlfragment("dma.zcockpit.view.fragment.fornecedor", this);
+				this._F4fornecedorDialog = sap.ui.xmlfragment("dma.zgenericos.view.fragment.fornecedor", this);
 				this.getView().addDependent(this._F4fornecedorDialog);
 			}
 			// set previous filter - if comprador is filled
@@ -511,7 +511,7 @@ sap.ui.define([
 			this.inputId = oEvent.getSource().getId();
 			// create value help dialog
 			if (!this._F4contratoDialog) {
-				this._F4contratoDialog = sap.ui.xmlfragment("dma.zcockpit.view.fragment.contrato", this);
+				this._F4contratoDialog = sap.ui.xmlfragment("dma.zgenericos.view.fragment.contrato", this);
 				this.getView().addDependent(this._F4contratoDialog);
 			}
 			// Filtro Comprador - Codigo

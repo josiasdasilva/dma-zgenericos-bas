@@ -1,19 +1,19 @@
 /*global history */
 sap.ui.define([
-	"dma/zcockpit/controller/BaseController",
+	"dma/zgenericos/controller/BaseController",
 	"sap/ui/model/json/JSONModel",
 	"sap/ui/model/Filter",
 	"sap/ui/model/FilterOperator",
 	"sap/m/GroupHeaderListItem",
 	"sap/ui/Device",
-	"dma/zcockpit/model/formatter",
-	"dma/zcockpit/model/grouper",
-	"dma/zcockpit/model/GroupSortState",
+	"dma/zgenericos/model/formatter",
+	"dma/zgenericos/model/grouper",
+	"dma/zgenericos/model/GroupSortState",
 	"sap/ui/core/routing/History"
 ], function (BaseController, JSONModel, Filter, FilterOperator, GroupHeaderListItem, Device, formatter, grouper, GroupSortState, History) {
 	"use strict";
 
-	return BaseController.extend("dma.zcockpit.controller.Master", {
+	return BaseController.extend("dma.zgenericos.controller.Master", {
 
 		formatter: formatter,
 		onInit: function () {
@@ -96,7 +96,7 @@ sap.ui.define([
 		},
 		onOpenViewSettings: function () {
 			// if (!this._oViewSettingsDialog) {
-			// 	this._oViewSettingsDialog = sap.ui.xmlfragment("dma.zcockpit.view.ViewSettingsDialog", this);
+			// 	this._oViewSettingsDialog = sap.ui.xmlfragment("dma.zgenericos.view.ViewSettingsDialog", this);
 			// 	this.getView().addDependent(this._oViewSettingsDialog);
 			// 	// forward compact/cozy style into Dialog
 			// 	this._oViewSettingsDialog.addStyleClass(this.getOwnerComponent().getContentDensityClass());

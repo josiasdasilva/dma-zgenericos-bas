@@ -1,6 +1,6 @@
 <mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" xmlns="sap.m" xmlns:semantic="sap.m.semantic" xmlns:core="sap.ui.core"
-	controllerName="dma.zcockpit.controller.Busca">
-	<Page title="Cockpit Comercial" id="__page3" showFooter="false" showSubHeader="false" showNavButton="true" navButtonPress="onNavBack"
+	controllerName="dma.zgenericos.controller.Busca">
+	<Page title="Cockpit Comercial Genéricos" id="__page3" showFooter="false" showSubHeader="false" showNavButton="true" navButtonPress="onNavBack"
 		enableScrolling="false">
 		<content>
 			<FlexBox width="100%" fitContainer="true" alignContent="Start" height="100%" renderType="Bare">

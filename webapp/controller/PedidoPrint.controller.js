@@ -1,8 +1,8 @@
 sap.ui.define([
-	"dma/zcockpit/controller/BaseController",
+	"dma/zgenericos/controller/BaseController",
 ], function (BaseController) {
 	"use strict";
-	return BaseController.extend("dma.zcockpit.controller.PedidoPrint", {
+	return BaseController.extend("dma.zgenericos.controller.PedidoPrint", {
 		onInit: function () {
 			this.getRouter().getRoute("pedidoprint").attachPatternMatched(this._onMasterMatched, this);
 			// $(window).on("resize.DocDisplay", this._setIFrame.bind(this));

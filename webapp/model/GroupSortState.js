@@ -4,7 +4,7 @@ sap.ui.define([
 ], function (BaseObject, Sorter) {
 	"use strict";
 
-	return BaseObject.extend("dma.zcockpit.model.GroupSortState", {
+	return BaseObject.extend("dma.zgenericos.model.GroupSortState", {
 
 		/**
 		 * Creates sorters and groupers for the master list.
@@ -15,7 +15,7 @@ sap.ui.define([
 		 * @public
 		 * @param {sap.ui.model.json.JSONModel} oViewModel the model of the current view
 		 * @param {function} fnGroupFunction the grouping function to be applied
-		 * @alias dma.zcockpit.model.GroupSortState
+		 * @alias dma.zgenericos.model.GroupSortState
 		 */
 		constructor: function (oViewModel, fnGroupFunction) {
 			this._oViewModel = oViewModel;

@@ -1,14 +1,14 @@
 sap.ui.define([
 	"sap/ui/core/UIComponent",
 	"sap/ui/Device",
-	"dma/zcockpit/model/models",
-	"dma/zcockpit/controller/ListSelector",
-	"dma/zcockpit/controller/ErrorHandler",
+	"dma/zgenericos/model/models",
+	"dma/zgenericos/controller/ListSelector",
+	"dma/zgenericos/controller/ErrorHandler",
 	"sap/ui/model/json/JSONModel"
 ], function (UIComponent, Device, models, ListSelector, ErrorHandler, JSONModel) {
 	"use strict";
 
-	return UIComponent.extend("dma.zcockpit.Component", {
+	return UIComponent.extend("dma.zgenericos.Component", {
 
 		metadata: {
 			manifest: "json",

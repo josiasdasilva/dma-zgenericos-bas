@@ -1,14 +1,14 @@
 sap.ui.define([
-	"dma/zcockpit/controller/BaseController",
+	"dma/zgenericos/controller/BaseController",
 	"sap/ui/model/json/JSONModel",
-	"dma/zcockpit/model/formatter",
+	"dma/zgenericos/model/formatter",
 	"sap/ui/core/routing/History",
 	"sap/m/MessageBox",
 	"sap/ui/model/Sorter",
 	"sap/ui/model/Filter"
 ], function (BaseController, JSONModel, formatter, History, MessageBox, Sorter, Filter) {
 	"use strict";
-	return BaseController.extend("dma.zcockpit.controller.Detail", {
+	return BaseController.extend("dma.zgenericos.controller.Detail", {
 		formatter: formatter,
 		_compraTable: null,
 		_vendaTable: null,
@@ -36,7 +36,7 @@ sap.ui.define([
 			this._faceamentoTableHeader = this.getView().byId('faceamentoTableHeader');
 
 			// if (!this._oColumnFilterPopover) {
-			// 	this._oColumnFilterPopover = sap.ui.xmlfragment("dma.zcockpit.view.fragment.FilterColumn", this);
+			// 	this._oColumnFilterPopover = sap.ui.xmlfragment("dma.zgenericos.view.fragment.FilterColumn", this);
 			// 	this._oColumnFilterPopover.setModel(this.getView().getModel());
 			// }
 

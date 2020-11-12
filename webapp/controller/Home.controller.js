@@ -1,5 +1,5 @@
 sap.ui.define([
-	"dma/zcockpit/controller/BaseController",
+	"dma/zgenericos/controller/BaseController",
 	"sap/m/Label",
 	"sap/m/Popover",
 	"sap/ui/core/format/DateFormat",
@@ -9,7 +9,7 @@ sap.ui.define([
 ], function (BaseController, Label, Popover, DateFormat, Fragment, JSONModel, MessageToast) {
 	"use strict";
 	//var sResponsivePaddingClasses = "sapUiResponsivePadding--header sapUiResponsivePadding--content sapUiResponsivePadding--footer";
-	return BaseController.extend("dma.zcockpit.controller.Home", {
+	return BaseController.extend("dma.zgenericos.controller.Home", {
 		_planningCalendar: null,
 		_aDialogTypes: null,
 		sUname: '',
@@ -35,7 +35,7 @@ sap.ui.define([
 
 			this.getRouter().getRoute("home").attachPatternMatched(this._onMasterMatched, this);
 			/* busca imagem */
-			var sRootPath = jQuery.sap.getModulePath("dma.zcockpit");
+			var sRootPath = jQuery.sap.getModulePath("dma.zgenericos");
 			var sImagePath = sRootPath + "/img/background_cockpit.png";
 			this.byId("img_epa").setSrc(sImagePath); /* popula dados da Agenda */
 			//this.loadAppointments();
@@ -246,7 +246,7 @@ sap.ui.define([
 			// 		var sInputValue = oEvent.getSource().getDescription();
 			// 		this.inputId = oEvent.getSource().getId();
 			// 		if (!this._F4compradorDialog) {
-			// 			this._F4compradorDialog = sap.ui.xmlfragment("dma.zcockpit.view.fragment.comprador", this);
+			// 			this._F4compradorDialog = sap.ui.xmlfragment("dma.zgenericos.view.fragment.comprador", this);
 			// 			this.getView().addDependent(this._F4compradorDialog);
 			// 		}
 			// 		// open value help dialog filtered by the input value
@@ -358,7 +358,7 @@ sap.ui.define([
 		},
 		loadAppointments: function (dStartDate) {
 			var oModel = new JSONModel();
-			var sRootPath = jQuery.sap.getModulePath("zcockpit");
+			var sRootPath = jQuery.sap.getModulePath("zgenericos");
 
 			let aFilters = [];
 			aFilters.push(new sap.ui.model.Filter({
@@ -544,7 +544,7 @@ sap.ui.define([
 		},
 		_arrangeidCalendCreatement: function (iDialogType) {
 			if (!this._oNewAppointmentDialog) {
-				this._oNewAppointmentDialog = sap.ui.xmlfragment("idCalendCreate", "dma.zcockpit.view.fragment.calendar_create", this);
+				this._oNewAppointmentDialog = sap.ui.xmlfragment("idCalendCreate", "dma.zgenericos.view.fragment.calendar_create", this);
 				//this._oNewAppointmentDialog = oDialog;
 				this.getView().addDependent(this._oNewAppointmentDialog);
 				this._arrangeDialog(iDialogType);
@@ -823,7 +823,7 @@ sap.ui.define([
 			}
 			if (!this._oDetailsPopover) {
 
-				this._oDetailsPopover = sap.ui.xmlfragment("idCalendDetails", "dma.zcockpit.view.fragment.calendar_details", this);
+				this._oDetailsPopover = sap.ui.xmlfragment("idCalendDetails", "dma.zgenericos.view.fragment.calendar_details", this);
 				this.getView().addDependent(this._oDetailsPopover);
 				this._setDetailsDialogContent(oAppointment);
 			} else {
@@ -893,7 +893,7 @@ sap.ui.define([
 			this.inputId = oEvent.getSource().getId();
 			// create value help dialog
 			if (!this._F4fornecedorDialog) {
-				this._F4fornecedorDialog = sap.ui.xmlfragment("dma.zcockpit.view.fragment.fornecedor", this);
+				this._F4fornecedorDialog = sap.ui.xmlfragment("dma.zgenericos.view.fragment.fornecedor", this);
 				this.getView().addDependent(this._F4fornecedorDialog);
 			}
 

@@ -3,7 +3,7 @@ sap.ui.define([
 	"sap/ui/model/json/JSONModel"
 ], function (BaseController, Device, Fragment, JSONModel, MessageToast, Filter, FilterOperator) {
 	"use strict";
-	return BaseController.extend("dma.zcockpit.controller.Calendar", {
+	return BaseController.extend("dma.zgenericos.controller.Calendar", {
 		onInit: function () {
 			// // create model
 			// var oModel = new JSONModel();

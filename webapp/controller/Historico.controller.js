@@ -1,6 +1,6 @@
 sap.ui.define([
-	"dma/zcockpit/controller/BaseController",
-	"dma/zcockpit/model/formatter",
+	"dma/zgenericos/controller/BaseController",
+	"dma/zgenericos/model/formatter",
 	'sap/m/Token',
 	"sap/ui/core/Fragment",
 	"sap/ui/model/Sorter",
@@ -8,7 +8,7 @@ sap.ui.define([
 	"sap/ui/model/FilterOperator"
 ], function (BaseController, formatter, Fragment, Sorter, Token, Filter, FilterOperator) {
 	"use strict";
-	return BaseController.extend("dma.zcockpit.controller.Historico", {
+	return BaseController.extend("dma.zgenericos.controller.Historico", {
 		formatter: formatter,
 		_histPedidoTable: null,
 		onInit: function () {
@@ -105,7 +105,7 @@ sap.ui.define([
 			this.inputId = oEvent.getSource().getId();
 			// create value help dialog
 			if (!this._F4compradorDialog) {
-				this._F4compradorDialog = sap.ui.xmlfragment("dma.zcockpit.view.fragment.comprador", this);
+				this._F4compradorDialog = sap.ui.xmlfragment("dma.zgenericos.view.fragment.comprador", this);
 				this.getView().addDependent(this._F4compradorDialog);
 			}
 			// open value help dialog filtered by the input value
@@ -138,7 +138,7 @@ sap.ui.define([
 			this.inputId = oEvent.getSource().getId();
 			// create value help dialog
 			if (!this._F4fornecHistoricoDialog) {
-				this._F4fornecHistoricoDialog = sap.ui.xmlfragment("dma.zcockpit.view.fragment.fornecHistorico", this);
+				this._F4fornecHistoricoDialog = sap.ui.xmlfragment("dma.zgenericos.view.fragment.fornecHistorico", this);
 				this.getView().addDependent(this._F4fornecHistoricoDialog);
 			}
 			var sEkgrp = this.byId("compradorInput").getValue();
@@ -182,7 +182,7 @@ sap.ui.define([
 		onF4Loja: function (oEvent) {
 			// create value help dialog
 			if (!this._F4lojaHistoricoDialog) {
-				this._F4lojaHistoricoDialog = sap.ui.xmlfragment("dma.zcockpit.view.fragment.lojaHistorico", this);
+				this._F4lojaHistoricoDialog = sap.ui.xmlfragment("dma.zgenericos.view.fragment.lojaHistorico", this);
 				this.getView().addDependent(this._F4lojaHistoricoDialog);
 			}
 

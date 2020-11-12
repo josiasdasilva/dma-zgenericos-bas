@@ -1,7 +1,7 @@
 {
 	"_version": "1.8.0",
 	"sap.app": {
-		"id": "dma.zcockpit",
+		"id": "dma.zgenericos",
 		"type": "application",
 		"i18n": "i18n/i18n.properties",
 		"title": "{{appTitle}}",
@@ -45,7 +45,7 @@
 	},
 	"sap.ui5": {
 		"rootView": {
-			"viewName": "dma.zcockpit.view.Home",
+			"viewName": "dma.zgenericos.view.Home",
 			"type": "XML"
 		},
 		"dependencies": {
@@ -64,7 +64,7 @@
 			"i18n": {
 				"type": "sap.ui.model.resource.ResourceModel",
 				"settings": {
-					"bundleName": "dma.zcockpit.i18n.i18n"
+					"bundleName": "dma.zgenericos.i18n.i18n"
 				}
 			},
 			"": {
@@ -95,7 +95,7 @@
 			"config": {
 				"routerClass": "sap.m.routing.Router",
 				"viewType": "XML",
-				"viewPath": "dma.zcockpit.view",
+				"viewPath": "dma.zgenericos.view",
 				"controlId": "homeId",
 				"controlAggregation": "pages",
 				"async": true,
@@ -192,7 +192,7 @@
 		}
 	},
 	"sap.platform.abap": {
-		"uri": "/sap/bc/ui5_ui5/sap/zcockpit/webapp",
+		"uri": "/sap/bc/ui5_ui5/sap/zgenericos/webapp",
 		"_version": "1.1.0"
 	}
 }

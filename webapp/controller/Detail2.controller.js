@@ -1,12 +1,12 @@
 sap.ui.define([
-	"dma/zcockpit/controller/BaseController",
+	"dma/zgenericos/controller/BaseController",
 	"sap/ui/model/json/JSONModel",
-	"dma/zcockpit/model/formatter",
+	"dma/zgenericos/model/formatter",
 	"sap/ui/core/routing/History",
 	"sap/m/MessageBox"
 ], function (BaseController, JSONModel, formatter, History, MessageBox) {
 	"use strict";
-	return BaseController.extend("dma.zcockpit.controller.Detail2", {
+	return BaseController.extend("dma.zgenericos.controller.Detail2", {
 		formatter: formatter,
 		onInit: function () {
 			//var oViewModel = new JSONModel({ busy: false, delay: 0 });

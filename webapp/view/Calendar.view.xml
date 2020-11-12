@@ -1,4 +1,4 @@
-<mvc:View controllerName="dma.zcockpit.controller.Calendar" xmlns:mvc="sap.ui.core.mvc" xmlns:unified="sap.ui.unified" xmlns="sap.m"
+<mvc:View controllerName="dma.zgenericos.controller.Calendar" xmlns:mvc="sap.ui.core.mvc" xmlns:unified="sap.ui.unified" xmlns="sap.m"
 	xmlns:semantic="sap.m.semantic">
 	<VBox class="sapUiSmallMargin">
 		<!--<PlanningCalendar-->

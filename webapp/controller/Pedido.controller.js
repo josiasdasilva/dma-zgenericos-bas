@@ -1,7 +1,7 @@
 sap.ui.define([
-	"dma/zcockpit/controller/BaseController",
+	"dma/zgenericos/controller/BaseController",
 	"sap/ui/model/json/JSONModel",
-	"dma/zcockpit/model/formatter",
+	"dma/zgenericos/model/formatter",
 	"sap/m/MessageToast",
 	"sap/m/Dialog",
 	"sap/m/DialogType",
@@ -15,7 +15,7 @@ sap.ui.define([
 	FilterOperator) {
 	"use strict";
 	var sResponsivePaddingClasses = "sapUiResponsivePadding--header sapUiResponsivePadding--content sapUiResponsivePadding--footer";
-	return BaseController.extend("dma.zcockpit.controller.Pedido", {
+	return BaseController.extend("dma.zgenericos.controller.Pedido", {
 		_oTablePedidoHeader: null,
 		_segVenda: null,
 		_segPedido: null,
@@ -31,7 +31,7 @@ sap.ui.define([
 
 			//FAFN - Begin
 			if (!this._oColumnFilterPopover) {
-				this._oColumnFilterPopover = sap.ui.xmlfragment("dma.zcockpit.view.fragment.FilterColumn", this);
+				this._oColumnFilterPopover = sap.ui.xmlfragment("dma.zgenericos.view.fragment.FilterColumn", this);
 				this._oColumnFilterPopover.setModel(this.getView().getModel());
 			}
 			this._oTablePedidoHeader.addEventDelegate({
@@ -62,7 +62,7 @@ sap.ui.define([
 		_getDialogLojaSum: function () {
 			if (!this._oDialogLojaSum) {
 
-				this._oDialogLojaSum = sap.ui.xmlfragment("idLojasSum", "dma.zcockpit.view.fragment.lojasSum", this);
+				this._oDialogLojaSum = sap.ui.xmlfragment("idLojasSum", "dma.zgenericos.view.fragment.lojasSum", this);
 				this.getView().addDependent(this._oDialogLojaSum);
 			}
 			return this._oDialogLojaSum;
@@ -269,7 +269,7 @@ sap.ui.define([
 		// 	// create a fragment with dialog, and pass the selected data
 		// 	if (!this.dialog) {
 		// 		// This fragment can be instantiated from a controller as follows:
-		// 		this.dialog = sap.ui.xmlfragment("idPedCriado", "dma.zcockpit.view.fragment.ped_criado", this);
+		// 		this.dialog = sap.ui.xmlfragment("idPedCriado", "dma.zgenericos.view.fragment.ped_criado", this);
 		// 	}
 		// 	return this.dialog;
 		// },
@@ -472,7 +472,7 @@ sap.ui.define([
 		dialogoCriaPedido: function (oData2, pNroSeq) {
 			var aFilters = [];
 			if (!this._PedCriadoDialog) {
-				this._PedCriadoDialog = sap.ui.xmlfragment("dma.zcockpit.view.fragment.ped_criado", this);
+				this._PedCriadoDialog = sap.ui.xmlfragment("dma.zgenericos.view.fragment.ped_criado", this);
 				this.getView().addDependent(this._PedCriadoDialog);
 			}
 			aFilters.push(new sap.ui.model.Filter(
@@ -557,7 +557,7 @@ sap.ui.define([
 		_openPedCriadoEmail: function (oEvent) {
 			var oButton = oEvent.getSource();
 			if (!this._popoverEmail) {
-				this._popoverEmail = sap.ui.xmlfragment("idPopoverEmail", "dma.zcockpit.view.fragment.popoverEmail", this);
+				this._popoverEmail = sap.ui.xmlfragment("idPopoverEmail", "dma.zgenericos.view.fragment.popoverEmail", this);
 				this.getView().addDependent(this._popoverEmail);
 			}
 

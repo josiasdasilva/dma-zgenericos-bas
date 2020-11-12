@@ -1,10 +1,10 @@
 sap.ui.define([
-	"dma/zcockpit/controller/BaseController",
-	"dma/zcockpit/model/formatter"
+	"dma/zgenericos/controller/BaseController",
+	"dma/zgenericos/model/formatter"
 ], function (BaseController, formatter) {
 	"use strict";
 
-	return BaseController.extend("dma.zcockpit.controller.Fornecedor", {
+	return BaseController.extend("dma.zgenericos.controller.Fornecedor", {
 
 		formatter: formatter,
 

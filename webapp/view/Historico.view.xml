@@ -1,6 +1,6 @@
 <mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" xmlns:semantic="sap.m.semantic" xmlns:table="sap.ui.table"
 	xmlns:sap.ui.core="sap.ui.core" xmlns="sap.m" xmlns:smartFilterBar="sap.ui.comp.smartfilterbar" xmlns:core="sap.ui.core"
-	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" controllerName="dma.zcockpit.controller.Historico"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" controllerName="dma.zgenericos.controller.Historico"
 	height="100%">
 	<Page title="Cockpit Comercial" id="__page3" showSubHeader="false" showNavButton="true" navButtonPress="onNavBack">
 		<content>

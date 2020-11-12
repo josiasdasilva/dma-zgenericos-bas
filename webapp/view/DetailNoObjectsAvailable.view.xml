@@ -1,5 +1,5 @@
 <mvc:View
-	controllerName="dma.zcockpit.controller.BaseController"
+	controllerName="dma.zgenericos.controller.BaseController"
 	xmlns:mvc="sap.ui.core.mvc"
 	xmlns="sap.m">
 

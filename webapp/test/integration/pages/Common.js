@@ -4,7 +4,7 @@ sap.ui.define([
 	"use strict";
 
 	function getFrameUrl(sHash, sUrlParameters) {
-		var sUrl = jQuery.sap.getResourcePath("dma/zcockpit/index", ".html");
+		var sUrl = jQuery.sap.getResourcePath("dma/zgenericos/index", ".html");
 		sHash = sHash || "";
 		sUrlParameters = sUrlParameters ? "?" + sUrlParameters : "";
 
@@ -17,7 +17,7 @@ sap.ui.define([
 		return sUrl + sUrlParameters + sHash;
 	}
 
-	return Opa5.extend("dma.zcockpit.test.integration.pages.Common", {
+	return Opa5.extend("dma.zgenericos.test.integration.pages.Common", {
 
 		iStartTheApp: function (oOptions) {
 			oOptions = oOptions || {};

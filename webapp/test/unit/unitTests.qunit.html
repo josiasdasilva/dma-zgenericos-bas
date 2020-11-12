@@ -9,8 +9,8 @@
             src="../../../resources/sap-ui-core.js"
             data-sap-ui-libs="sap.m"
             data-sap-ui-resourceroots='{
-				"dma/zcockpit": "../../",
-				"dma/zcockpit/test/unit": "./"
+				"dma/zgenericos": "../../",
+				"dma/zgenericos/test/unit": "./"
 			}'>
     </script>
 
@@ -22,7 +22,7 @@
 		QUnit.config.autostart = false;
 
 		sap.ui.require(
-			["dma/zcockpit/test/unit/allTests"],
+			["dma/zgenericos/test/unit/allTests"],
 			function() {
 				QUnit.start();
 			}
