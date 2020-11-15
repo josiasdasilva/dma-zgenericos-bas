@@ -1,6 +1,6 @@
 <mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" xmlns="sap.m" xmlns:semantic="sap.m.semantic" xmlns:core="sap.ui.core"
 	controllerName="dma.zgenericos.controller.Busca">
-	<Page title="Cockpit Comercial Genéricos" id="__page3" showFooter="false" showSubHeader="false" showNavButton="true" navButtonPress="onNavBack"
+	<Page title="{i18n>appTitle}" id="__page3" showFooter="false" showSubHeader="false" showNavButton="true" navButtonPress="onNavBack"
 		enableScrolling="false">
 		<content>
 			<FlexBox width="100%" fitContainer="true" alignContent="Start" height="100%" renderType="Bare">
@@ -52,9 +52,9 @@
 								<content>
 									<FlexBox width="auto" fitContainer="true">
 										<items>
-											<FlexBox width="8rem" fitContainer="true" alignItems="Center" alignContent="Start">
+											<FlexBox width="10rem" fitContainer="true" alignItems="Center" alignContent="Start">
 												<items>
-													<Title text="Comprador" width="8rem" id="__title0" titleStyle="H3"/>
+													<Title text="Comprador" width="10rem" id="__title0" titleStyle="H6"/>
 												</items>
 											</FlexBox>
 											<FlexBox width="100%" alignItems="Center">
@@ -79,10 +79,10 @@
 									<FlexBox width="auto" id="__box12" fitContainer="true">
 										<items>
 											<FlexBox xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" xmlns="sap.m" xmlns:semantic="sap.m.semantic" xmlns:core="sap.ui.core"
-												width="8rem" id="__box13" alignItems="Center" alignContent="Start">
+												width="10rem" id="__box13" alignItems="Center" alignContent="Start">
 												<items>
 													<Title xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" xmlns:semantic="sap.m.semantic" xmlns:core="sap.ui.core" xmlns="sap.m"
-														text="Fornecedor" width="8rem" titleStyle="H3"/>
+														text="{i18n>fornecedor_generico}" width="10rem" titleStyle="H6"/>
 												</items>
 											</FlexBox>
 											<FlexBox xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" xmlns="sap.m" xmlns:semantic="sap.m.semantic" xmlns:core="sap.ui.core"
@@ -97,6 +97,36 @@
 												<items>
 													<Button xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns="sap.m"
 														width="3rem" id="fornecedorDelete" icon="sap-icon://delete" press="clearFornecedor"/>
+												</items>
+											</FlexBox>
+										</items>
+									</FlexBox>
+								</content>
+							</Panel>
+                            <Panel xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns="sap.m"
+								width="auto">
+								<content>
+									<FlexBox width="auto" fitContainer="true">
+										<items>
+											<FlexBox xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" xmlns="sap.m" xmlns:semantic="sap.m.semantic" xmlns:core="sap.ui.core"
+												width="10rem" alignItems="Center" alignContent="Start">
+												<items>
+													<Title xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" xmlns:semantic="sap.m.semantic" xmlns:core="sap.ui.core" xmlns="sap.m"
+														text="{i18n>fornecedor_especifico}" width="10rem" titleStyle="H6"/>
+												</items>
+											</FlexBox>
+											<FlexBox xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" xmlns="sap.m" xmlns:semantic="sap.m.semantic" xmlns:core="sap.ui.core"
+												width="100%"  alignItems="Center">
+												<items>
+													<Input xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" xmlns:semantic="sap.m.semantic" xmlns:core="sap.ui.core" xmlns="sap.m"
+														width="100%" id="fornecedorEspecifcoInput" type="Text" placeholder="Escolha o Fornecedor ..." showSuggestion="true" showValueHelp="true"
+														valueHelpRequest="onF4Fornecedor" valueHelpOnly="true" fieldWidth="120px"/>
+												</items>
+											</FlexBox>
+											<FlexBox width="3rem" alignContent="End" alignItems="Center">
+												<items>
+													<Button xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns="sap.m"
+														width="3rem" id="fornecedorEspecificoDelete" icon="sap-icon://delete" press="clearFornecedorEspecifico"/>
 												</items>
 											</FlexBox>
 										</items>
@@ -118,7 +148,7 @@
 										<items>
 											<FlexBox width="7rem" alignItems="Center">
 												<items>
-													<Title text="UF" width="7rem" titleStyle="H3"/>
+													<Title text="UF" width="7rem" titleStyle="H6"/>
 												</items>
 											</FlexBox>
 											<FlexBox width="100%" alignItems="Center">
@@ -135,7 +165,7 @@
 										<items>
 											<FlexBox width="7rem" alignItems="Center">
 												<items>
-													<Title text="Grupo" width="7rem" titleStyle="H3"/>
+													<Title text="Grupo" width="7rem" titleStyle="H6"/>
 												</items>
 											</FlexBox>
 											<FlexBox width="100%" alignItems="Center">
@@ -152,7 +182,7 @@
 										<items>
 											<FlexBox width="7rem" alignItems="Center">
 												<items>
-													<Title text="Lojas" width="7rem" titleStyle="H3"/>
+													<Title text="Lojas" width="7rem" titleStyle="H6"/>
 												</items>
 											</FlexBox>
 											<FlexBox width="100%" alignItems="Center">
@@ -170,10 +200,10 @@
 								<content>
 									<FlexBox width="auto" id="__box16">
 										<items>
-											<FlexBox width="8rem" id="__box17" alignContent="Start" alignItems="Center">
+											<FlexBox width="10rem" id="__box17" alignContent="Start" alignItems="Center">
 												<items>
 													<Title xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" xmlns:semantic="sap.m.semantic" xmlns:core="sap.ui.core" xmlns="sap.m"
-														text="Contrato" width="8rem" id="__title0_copy2" titleStyle="H3"/>
+														text="Contrato" width="10rem" id="__title0_copy2" titleStyle="H6"/>
 												</items>
 											</FlexBox>
 											<FlexBox xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" xmlns="sap.m" xmlns:semantic="sap.m.semantic" xmlns:core="sap.ui.core"

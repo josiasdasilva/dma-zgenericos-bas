@@ -1,7 +1,7 @@
 <mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:unified="sap.ui.unified" controllerName="dma.zgenericos.controller.Home">
 	<App id="homeId">
 		<pages>
-			<Page title="Cockpit Comercial Genéricos" enableScrolling="false">
+			<Page title="{i18n>appTitle}" enableScrolling="false">
 				<FlexBox width="100%" direction="Column" fitContainer="true">
 					<items>
 						<FlexBox width="100%" direction="Column" fitContainer="true">
@@ -58,7 +58,7 @@
 							<Button icon="sap-icon://inspection" type="Accept" width="auto" press="onPressDisplayContract" tooltip="{i18n>displayContract}"/>
 						</contentLeft>
 						<contentMiddle>
-							<Text text="Cockpit Comercial Genéricos" id="text0"/>
+							<Text text="{i18n>appTitle}" id="text0"/>
 						</contentMiddle>
 					</Bar>
 				</customHeader>
