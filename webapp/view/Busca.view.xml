@@ -133,7 +133,7 @@
 									</FlexBox>
 								</content>
 							</Panel>
-							<Panel id="__panel0" headerText="Seleção" width="auto">
+							<Panel id="__panel0" headerText="{i18n>selecao}" width="auto">
 								<headerToolbar>
 									<Toolbar width="100%" height="auto">
 										<content>
