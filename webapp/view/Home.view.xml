@@ -15,9 +15,9 @@
 						</FlexBox>
 						<FlexBox width="100%" direction="Column" fitContainer="true" alignContent="Center" alignItems="Center" justifyContent="End" height="15em">
 							<items>
-								<MessageStrip id="idAppntOverSeven" visible="false" text="{i18n>msg_appointment_over_sevenpm}" type="Warning" showIcon="true"
+								<!--<MessageStrip id="idAppntOverSeven" visible="false" text="{i18n>msg_appointment_over_sevenpm}" type="Warning" showIcon="true"
 									showCloseButton="true" class="sapUiMediumMarginBottom"/>
-								<PlanningCalendar id="MyCalendar" width="100%" startDate="{path: '/startDate'}" rows="{path: '/AgendaItem'}" startDateChange="handleNavDate"
+								<PlanningCalendar id="MyCalendar" width="100%" startDate="{path: '/startDate'}" rows="{path: '/AgendaItemSet'}" startDateChange="handleNavDate"
 									appointmentSelect="handleAppointmentSelect" showEmptyIntervalHeaders="false" intervalSelect="handleAppointmentAddWithContext">
 									<toolbarContent>
 										<Toolbar width="100%" id="__toolbar1">
@@ -40,7 +40,7 @@
 											</intervalHeaders>
 										</PlanningCalendarRow>
 									</rows>
-								</PlanningCalendar>
+								</PlanningCalendar>-->
 							</items>
 						</FlexBox>
 					</items>

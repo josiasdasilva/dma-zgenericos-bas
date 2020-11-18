@@ -28,7 +28,7 @@
 													<Label xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" xmlns:semantic="sap.m.semantic" xmlns:core="sap.ui.core" xmlns="sap.m"
 														text="Tipo do Pedido" width="100%" required="true" id="label1"/>
 													<ComboBox xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" xmlns:semantic="sap.m.semantic" xmlns:core="sap.ui.core" xmlns="sap.m"
-														showSecondaryValues="true" items="{path: '/TipoPedido', sorter: { path: 'Bsart' } }" width="100%" required="true" id="idComboPedido">
+														showSecondaryValues="true" items="{path: '/TipoPedidoSet', sorter: { path: 'Bsart' } }" width="100%" required="true" id="idComboPedido">
 														<items>
 															<core:ListItem xmlns:core="sap.ui.core" key="{Bsart}" text="{Bsart}" additionalText="{Batxt}"
 																id="idListPedido_copy_idComboPedido_0_idComboPedido_0_idComboPedido_0"/>
@@ -120,7 +120,7 @@
 												<items>
 													<Input xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" xmlns:semantic="sap.m.semantic" xmlns:core="sap.ui.core" xmlns="sap.m"
 														width="100%" id="fornecedorEspecifcoInput" type="Text" placeholder="Escolha o Fornecedor ..." showSuggestion="true" showValueHelp="true"
-														valueHelpRequest="onF4Fornecedor" valueHelpOnly="true" fieldWidth="120px"/>
+														valueHelpRequest="onF4FornecedorEspecifico" valueHelpOnly="true" fieldWidth="120px"/>
 												</items>
 											</FlexBox>
 											<FlexBox width="3rem" alignContent="End" alignItems="Center">
@@ -154,7 +154,7 @@
 											<FlexBox width="100%" alignItems="Center">
 												<items>
 													<MultiInput width="31rem" id="UFInput" placeholder="Escolha a UF ..."
-														suggestionItems="{ path: '/UF', sorter: { path: 'Bland', descending : false }}" valueHelpRequest="onF4UF" tokenChange="onF4UFTokenUpdate"
+														suggestionItems="{ path: '/UFSet', sorter: { path: 'Bland', descending : false }}" valueHelpRequest="onF4UF" tokenChange="onF4UFTokenUpdate"
 														valueHelpOnly="true">
 														<core:Item key="{Bland}" text="{Bezei}"/></MultiInput>
 												</items>
@@ -171,7 +171,7 @@
 											<FlexBox width="100%" alignItems="Center">
 												<items>
 													<MultiInput width="31rem" id="grupoLojasInput" placeholder="Escolha o Grupo ..."
-														suggestionItems="{ path: '/GrupoLojas', sorter: { path: 'Bandeira', descending: false }}" valueHelpRequest="onF4grupoLojas"
+														suggestionItems="{ path: '/GrupoLojasSet', sorter: { path: 'Bandeira', descending: false }}" valueHelpRequest="onF4grupoLojas"
 														tokenChange="onF4grupoLojasTokenUpdate" valueHelpOnly="true">
 														<core:Item key="{Bandeira}" text="{Descricao}"/></MultiInput>
 												</items>
@@ -187,7 +187,7 @@
 											</FlexBox>
 											<FlexBox width="100%" alignItems="Center">
 												<items>
-													<MultiInput width="31rem" id="lojasInput" placeholder="Escolha a Loja ..." suggestionItems="{ path: '/CD', sorter: { path: 'Werks' }}"
+													<MultiInput width="31rem" id="lojasInput" placeholder="Escolha a Loja ..." suggestionItems="{ path: '/CDSet', sorter: { path: 'Werks' }}"
 														valueHelpRequest="onF4Lojas" tokenChange="onF4LojasTokenUpdate" valueHelpOnly="true">
 														<core:Item key="{Werks}" text="{Nome}"/></MultiInput>
 												</items>
@@ -232,7 +232,7 @@
 								<content>
 									<SearchField width="100%" placeholder="Selecione os Produtos" id="buscaProduto" liveChange="onSearchProduto"/>
 									<ScrollContainer class="scroll-busca-pedido" vertical="true" height="auto">
-										<List id="idProdutos" items="{/Produto}" selectionChange="onSelectionChangeProduto" mode="MultiSelect" growingThreshold="30"
+										<List id="idProdutos" items="{/ProdutoSet}" selectionChange="onSelectionChangeProduto" mode="MultiSelect" growingThreshold="30"
 											includeItemInSelection="true" noDataText="{i18n>xped.nodata}" growing="true" growingScrollToLoad="true">
 											<StandardListItem class="_cl_idProdutos" title="{Maktx}" iconDensityAware="false" iconInset="false" id="listProdutos" info="{Matnr}"/>
 										</List>

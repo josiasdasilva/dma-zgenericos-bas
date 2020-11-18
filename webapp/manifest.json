@@ -14,8 +14,8 @@
 			"version": "0.0.0"
 		},
 		"dataSources": {
-			"ZCOCKPIT_COMERCIAL_SRV": {
-				"uri": "/sap/opu/odata/sap/ZCOCKPIT_COMERCIAL_SRV/",
+			"ZCOCKPIT_COMMODITIES_SRV": {
+				"uri": "/sap/opu/odata/sap/ZCOCKPIT_COMMODITIES_SRV/",
 				"type": "OData",
 				"settings": {
 					"localUri": "localService/metadata.xml"
@@ -75,7 +75,7 @@
 					"defaultCountMode": "Request",
 					"defaultUpdateMethod": "PUT"
 				},
-				"dataSource": "ZCOCKPIT_COMERCIAL_SRV",
+				"dataSource": "ZCOCKPIT_COMMODITIES_SRV",
 				"preload": true
 			}
 		},
@@ -134,13 +134,13 @@
 					"target": "pedidoprint"
 				},
 				{
-					"pattern": "PO/{Ekgrp}/{Lifnr}",
+					"pattern": "PO/{Ekgrp}/{Lifnr}/{LifnrEsp}",
 					"name": "pedido",
 					"target": "pedido",
 					"subroutes": [
 						{
 							"name": "detail",
-							"pattern": "PO/{Ekgrp}/{Lifnr}/{Matnr}",
+							"pattern": "PO/{Ekgrp}/{Lifnr}/{LifnrEsp}/{Matnr}",
 							"target": "detail"
 						}
 					]

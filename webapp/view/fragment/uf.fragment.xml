@@ -2,7 +2,7 @@
 	<SelectDialog 
 		title="UF" 
 		class="sapUiPopupWithPadding" 
-		items="{ path : '/UF', sorter : { path : 'Bland', descending : false } }"
+		items="{ path : '/UFSet', sorter : { path : 'Bland', descending : false } }"
 		showClearButton="true" 
 		liveChange="_handleF4UFSearch" 
 		search="_handleF4UFSearch" 

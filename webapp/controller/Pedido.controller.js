@@ -45,83 +45,8 @@ sap.ui.define([
             }, this._oTablePedidoHeader);
             //FAFN - End
             this.getView().byId("_i_pedido_0").setColor("#f00000");
-            this.configTabKeyFocus(this._oTablePedido);
         },
-		configTabKeyFocus: function (oTable) {
-			oTable.addEventDelegate({
-				onAfterRendering: () => {
-					let oTableID = oTable.getId();
-
-					$("#" + oTableID).focusin(function (evt) {
-						// remember current focused cell
-						jQuery.sap.delayedCall(100, null, function () {
-							var oBody = $('#' + oTableID).find('tbody');
-							// find the focused input field
-							var oField = oBody.find('.sapMInputFocused')[0];
-							if (oField && !oTable._skipFocusInitialization) {
-								// store ID of focused cell
-								oTable._focusedInput = oField.id;
-								oTable._currentIndex = oTable.getItems().findIndex((item) => {
-									return item.getCells().find((field) => {
-										return field.getId() === oTable._focusedInput
-									});
-								});
-								oTable._rowIndexOfInputFields = 0;
-								for (let itemTable of oTable.getItems()) {
-									oTable._rowIndexOfInputFields = itemTable.getCells().findIndex((field) => {
-										return field.getId() === oTable._focusedInput;
-
-									});
-									if (oTable._rowIndexOfInputFields > 0) {
-										break;
-									}
-								}
-
-							} else {
-								oTable._skipFocusInitialization = false;
-							}
-						});
-					});
-
-					$('#' + oTableID).on('keydown', function (e) {
-						
-						if (e.key === 'Enter') {
-							oTable._skipFocusInitialization = true;
-
-							if (oTable.getItems().length === (oTable._currentIndex + 1)) {
-								oTable._currentIndex = 0;
-							} else {
-								oTable._currentIndex++;
-							}
-							let oCurrentField = oTable.getItems()[oTable._currentIndex].getCells()[oTable._rowIndexOfInputFields];
-							oCurrentField.focus();
-							jQuery.sap.delayedCall(100, null, function () {
-								oCurrentField.selectText(0, oCurrentField.getValue().length)
-							});
-
-						}
-
-						if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
-							oTable._skipFocusInitialization = true;
-
-							if (oTable.getItems().length === (oTable._currentIndex + 1)) {
-								oTable._currentIndex = 0;
-							} else {
-								e.key === 'ArrowDown' ? oTable._currentIndex++ : oTable._currentIndex--;
-							}
-							let oCurrentField = oTable.getItems()[oTable._currentIndex].getCells()[oTable._rowIndexOfInputFields];
-							oCurrentField.focus();
-							jQuery.sap.delayedCall(100, null, function () {
-								oCurrentField.selectText(0, oCurrentField.getValue().length)
-							});
-
-						}
-
-					});
-
-				}
-			}, oTable);
-		},        
+	    
         //FAFN - Begin
         onClickColumnHeader: function (oID) {
             let sID = oID;
@@ -294,40 +219,6 @@ sap.ui.define([
                 zIcon.setSrc("sap-icon://sort-ascending");
             }
         },
-        // onChangeFilterColumn: function (oEvent) {
-        // 	var oValue = oEvent.getParameter("value");
-        // 	var oMultipleValues = oValue.split(",");
-        // 	var aFilters = [];
-        // 	for (var i = 0; i < oMultipleValues.length; i++) {
-        // 		var oFilter = new Filter(this._oColumnFilterPopover.bindingValue, "Contains", oMultipleValues[i]);
-        // 		aFilters.push(oFilter)
-        // 	}
-        // 	var oItems = this._oTablePedido.getBinding("items");
-        // 	oItems.filter(aFilters, "Application");
-        // 	this._oColumnFilterPopover.close();
-        // },
-
-        // onAscending: function () {
-        // 	var oItems = this._oTablePedido.getBinding("items");
-        // 	var oSorter = new Sorter(this._oColumnFilterPopover.bindingValue);
-        // 	oItems.sort(oSorter);
-        // 	this._oColumnFilterPopover.close();
-        // },
-        // onDescending: function () {
-        // 	var oItems = this._oTablePedido.getBinding("items");
-        // 	var oSorter = new Sorter(this._oColumnFilterPopover.bindingValue);
-        // 	oSorter.bDescending = true;
-        // 	oItems.sort(oSorter, true);
-        // 	this._oColumnFilterPopover.close();
-        // }, //FAFN - End 	
-        //		handleSwipe: function(e) {
-        //			// register swipe event
-        //			var
-        //			//oSwipeListItem = e.getParameter("listItem"),    // get swiped list item from event
-        //				oSwipeContent = e.getParameter("swipeContent");
-        //			// get swiped content from event
-        //			oSwipeContent.setText("Delete").setType("Reject");
-        //		},
         onObjectMatched: function (oEvent) {
             var localModel = this.getModel();
             var globalModel = this.getModel("globalModel");
@@ -335,36 +226,28 @@ sap.ui.define([
             globalModel.setProperty("/colVlrPedido", this._segPedido.getProperty("selectedKey") === "real");
             globalModel.setProperty("/Ekgrp", oEvent.getParameter("arguments").Ekgrp);
             globalModel.setProperty("/Lifnr", oEvent.getParameter("arguments").Lifnr);
+            globalModel.setProperty("/LifnrEsp", oEvent.getParameter("arguments").LifnrEsp);
+            
 
             this.updateTable();
             this.updateTotal();
             // this.reiniciaIconesSort();
             this.recoverSortConfig();
         },
-        // _getDialog: function () {
-        // 	// create a fragment with dialog, and pass the selected data
-        // 	if (!this.dialog) {
-        // 		// This fragment can be instantiated from a controller as follows:
-        // 		this.dialog = sap.ui.xmlfragment("idPedCriado", "dma.zgenericos.view.fragment.ped_criado", this);
-        // 	}
-        // 	return this.dialog;
-        // },
-        // closeDialog: function () {
-        // 	this._getDialog().close();
-        // 	this.getRouter().navTo("home", true);
-        // },
         updateTable: function () {
             var localModel = this.getModel();
             var globalModel = this.getModel("globalModel");
             var sEkgrp = globalModel.getProperty("/Ekgrp");
             var sLifnr = globalModel.getProperty("/Lifnr");
+            var LifnrEsp = globalModel.getProperty("/LifnrEsp");
 
-            var sObjectPath = localModel.createKey("/Fornecedor", {
+            var sObjectPath = localModel.createKey("/FornecReal", {
                 Ekgrp: sEkgrp,
-                Lifnr: sLifnr
+                LifnrGen: sLifnr,
+                Lifnr: LifnrEsp
             });
             this._oTablePedido.bindItems({
-                path: sObjectPath + "/PO",
+                path: sObjectPath + "/POSet",
                 template: this._oTablePedido.getBindingInfo("items").template
             });
             this._oTablePedido.getBinding("items").refresh();
@@ -374,7 +257,7 @@ sap.ui.define([
             var cabec = this.byId("headerCabecalho");
             var globalModel = this.getModel("globalModel");
             var localModel = this.getModel();
-            var sObjectPath = localModel.createKey("/POSum", {
+            var sObjectPath = localModel.createKey("/POSumSet", {
                 Ekgrp: globalModel.getProperty("/Ekgrp"),
                 Lifnr: globalModel.getProperty("/Lifnr")
             });
@@ -431,6 +314,7 @@ sap.ui.define([
             this.getRouter().navTo("detail", {
                 Ekgrp: globalModel.getProperty("/Ekgrp"),
                 Lifnr: globalModel.getProperty("/Lifnr"),
+                LifnrEsp: globalModel.getProperty("/LifnrEsp"), 
                 Matnr: sMatnr,
                 Werks: globalModel.getProperty("/Werks")
             }, true);
@@ -459,7 +343,7 @@ sap.ui.define([
             /* update tela */
             var globalModel = this.getModel("globalModel");
             var localModel = this.getModel();
-            var sObjectPath = localModel.createKey("/Fornecedor", {
+            var sObjectPath = localModel.createKey("/FornecedorSet", {
                 Ekgrp: oItem.getBindingContext().getProperty("Ekgrp"),
                 Lifnr: oItem.getBindingContext().getProperty("Lifnr")
             });
@@ -468,12 +352,12 @@ sap.ui.define([
         onResetPedido: function (oEvent) {
             var globalModel = this.getModel("globalModel");
             var localModel = this.getModel();
-            var sObjectPath = localModel.createKey("/Fornecedor", {
+            var sObjectPath = localModel.createKey("/FornecedorSet", {
                 Werks: globalModel.getProperty("/Werks"),
                 Ekgrp: globalModel.getProperty("/Ekgrp"),
                 Lifnr: globalModel.getProperty("/Lifnr")
             });
-            localModel.read(sObjectPath + "/POReset", {
+            localModel.read(sObjectPath + "/POResetSet", {
                 method: "GET",
                 success: function (oData2, oResponse) {
                     this.updateTotal();
@@ -497,7 +381,7 @@ sap.ui.define([
                 pattern: "YYYYMMdd"
             }).format(globalModel.getProperty("/DtRemessa"));
 
-            var sObjectPath = localModel.createKey("/POCria", {
+            var sObjectPath = localModel.createKey("/POCriaSet", {
                 Ekgrp: globalModel.getProperty("/Ekgrp"),
                 Lifnr: globalModel.getProperty("/Lifnr"),
                 TpPedido: globalModel.getProperty("/TpPedido"),
@@ -571,7 +455,7 @@ sap.ui.define([
                 }
                 sEbeln = sEbeln + tbl_items[i].getAggregation('cells')[0].getProperty('text');
             }
-            var sObjectPath = localModel.createKey("/PrnPedido", {
+            var sObjectPath = localModel.createKey("/PrnPedidoSet", {
                 Ebeln: sEbeln
             });
             var sURL = localModel.sServiceUrl + sObjectPath + "/$value";
@@ -615,7 +499,7 @@ sap.ui.define([
                 sap.ui.getCore().byId("idPopoverEmail--ckbLojas").getSelected()
             ));
             sap.ui.core.BusyIndicator.show();
-            localModel.read("/MailPedidoSend", {
+            localModel.read("/MailPedidoSendSet", {
                 method: "GET",
                 filters: aFilters,
                 success: function (oData2, oResponse) {
@@ -639,7 +523,7 @@ sap.ui.define([
 
             var globalModel = this.getModel("globalModel");
             var localModel = this.getModel();
-            var sObjectPath = localModel.createKey("/MailPedidoGet", {
+            var sObjectPath = localModel.createKey("/MailPedidoGetSet", {
                 Ekgrp: globalModel.getProperty("/Ekgrp"),
                 Lifnr: globalModel.getProperty("/Lifnr")
             });
@@ -681,7 +565,7 @@ sap.ui.define([
                 initialFocus: "Analítico",
                 onClose: (oAction) => {
                     if (oAction === "Analítico") {
-                        var sObjectPath = localModel.createKey("/PrnMateriaisLojas", {
+                        var sObjectPath = localModel.createKey("/PrnMateriaisLojasSet", {
                             Ekgrp: sEkgrp,
                             Lifnr: sLifnr
                         });
@@ -689,7 +573,7 @@ sap.ui.define([
                         window.open(sURL, '_blank');
                     }
                     if (oAction === "Sintético") {
-                        var sObjectPath = localModel.createKey("/PrnMaterial", {
+                        var sObjectPath = localModel.createKey("/PrnMaterialSet", {
                             Ekgrp: sEkgrp,
                             Lifnr: sLifnr
                         });

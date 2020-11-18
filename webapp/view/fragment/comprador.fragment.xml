@@ -4,7 +4,7 @@
 	<SelectDialog
 		title="Comprador"
 		class="sapUiPopupWithPadding"
-		items="{/Comprador}"
+		items="{/CompradorSet}"
 		liveChange="_handleF4compradorSearch"
 		confirm="_handleF4compradorClose"
 		cancel="_handleF4compradorClose">

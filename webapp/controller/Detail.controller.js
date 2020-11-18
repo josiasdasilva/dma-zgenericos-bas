@@ -307,7 +307,7 @@ sap.ui.define([
 			globalModel.setProperty("/Lifnr", sLifnr);
 			var sMatnr = oEvent.getParameter("arguments").Matnr;
 			globalModel.setProperty("/Matnr", sMatnr);
-			var sObjectPath = this.getModel().createKey("/PO", {
+			var sObjectPath = this.getModel().createKey("/POSet", {
 				Ekgrp: sEkgrp,
 				Lifnr: sLifnr,
 				Matnr: sMatnr
@@ -316,22 +316,17 @@ sap.ui.define([
 			sHeader.bindElement(sObjectPath);
 			// Tabela Compra
 			this._compraTable.bindItems({
-				path: sObjectPath + "/POCompra",
+				path: sObjectPath + "/POCompraSet",
 				template: this._compraTable.getBindingInfo("items").template
 			});
 			this.resetSortIcons(this._compraTable, true);
 			// Tabela Venda
 			this._vendaTable.bindItems({
-				path: sObjectPath + "/POVenda",
+				path: sObjectPath + "/POVendaSet",
 				template: this._vendaTable.getBindingInfo("items").template
 			});
 			this.resetSortIcons(this._vendaTable, true);
-			// Tabela Histórico
-			// var tableHistorico = this.byId("historicoTable");
-			// tableHistorico.bindItems({
-			// 	path: sObjectPath + "/POHistorico",
-			// 	template: tableHistorico.getBindingInfo("items").template
-			// });
+
 			// Tabela Faceamento
 			this._faceamentoTable.bindItems({
 				path: sObjectPath + "/POFaceamento",

@@ -4,7 +4,7 @@
 	<SelectDialog
 		title="Lojas"
 		class="sapUiPopupWithPadding"
-		items="{/CD}"
+		items="{/CDSet}"
 		liveChange="_handleF4LojasSearch"
 		search="_handleF4LojasSearch"
 		confirm="_handleF4LojasClose"

@@ -285,10 +285,8 @@
 											tooltip="{path: 'EstTeor', formatter: '.formatter.toIntegerStr' }" textAlign="Right" id="number17_tablePedido_0"/>
 										<ObjectNumber class="textoLinhaPedido" number="{path: 'Mvd', formatter: '.formatter.toIntegerStr' }" emphasized="false"
 											tooltip="{path: 'Mvd', formatter: '.formatter.toIntegerStr' }" textAlign="Right" id="number18_tablePedido_0"/>
-										<!--<ObjectNumber class="textoLinhaPedido" number="{path: 'Prultcp', formatter: '.formatter.fullNumberStr' }" emphasized="false"
-											tooltip="{path: 'PrUltCp', formatter: '.formatter.fullNumberStr' }" textAlign="Right" id="number19_tablePedido_0"/>-->
-                                         <Input  class="inputCompras" width="4em" value="{path: 'Prultcp', formatter: '.formatter.float2digStr' }"
-                                         fieldWidth="100%" type="Text" valueLiveUpdate="true"/>
+										<ObjectNumber class="textoLinhaPedido" number="{path: 'Prultcp', formatter: '.formatter.fullNumberStr' }" emphasized="false"
+											tooltip="{path: 'PrUltCp', formatter: '.formatter.fullNumberStr' }" textAlign="Right" id="number19_tablePedido_0"/>
 										<ObjectNumber class="textoLinhaPedido" number="{path: 'Sugestao', formatter: '.formatter.toIntReqSugStr' }" emphasized="false"
 											textAlign="End" visible="{= ${Sugestao} &gt; 0 }" id="number20_tablePedido_0"/>
 										<ObjectNumber class="textoLinhaPedido" number="{path: 'Requisicao', formatter: '.formatter.toIntReqSugStr' }" emphasized="true"

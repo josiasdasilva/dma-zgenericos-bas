@@ -311,7 +311,7 @@
 									<l:flexContent>
 										<ScrollContainer vertical="true" focusable="true" class="scroll-compras">
 											<!--<ScrollContainer id="scrollCont1" vertical="true" focusable="true" height="32em">-->
-											<Table noDataText="Sem dados para exibir" id="compraTable" items="{path:'/POCompra', sorter: {path:'Werks'}}" class="tableTelaPedido"
+											<Table noDataText="Sem dados para exibir" id="compraTable" items="{path:'/POCompraSet', sorter: {path:'Werks'}}" class="tableTelaPedido"
 												updateFinished="compraUpdateFinished">
 												<items>
 													<ColumnListItem type="Active">
@@ -622,7 +622,7 @@
 								<l:flexContent>
 									<ScrollContainer height="32em" vertical="true" focusable="true" class="scroll-venda-faceamento">
 										<!--<ScrollContainer vertical="true" focusable="true" height="32em">-->
-										<Table noDataText="Sem dados para exibir" id="vendaTable" items="{/POVenda}" class="tableTelaPedido" growing="true" growingThreshold="200"
+										<Table noDataText="Sem dados para exibir" id="vendaTable" items="{/POVendaSet}" class="tableTelaPedido" growing="true" growingThreshold="200"
 											growingScrollToLoad="true">
 											<items>
 												<ColumnListItem>
@@ -943,7 +943,7 @@
 								</columns>
 							</Table>
 							<ScrollContainer vertical="true" focusable="true" height="32em" class="scroll-venda-faceamento">
-								<Table noDataText="Sem dados para exibir" id="faceamentoTable" items="{/POFaceamento}" class="tableTelaPedido" growingThreshold="200"
+								<Table noDataText="Sem dados para exibir" id="faceamentoTable" items="{/POFaceamentoSet}" class="tableTelaPedido" growingThreshold="200"
 									growingScrollToLoad="true" growing="true">
 									<items>
 										<ColumnListItem id="__item5_copy-vendaTable_copy-0-faceamentoTable-0">

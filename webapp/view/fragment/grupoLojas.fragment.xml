@@ -4,7 +4,7 @@
 	<SelectDialog 
 		title="Grupo de Lojas" 
 		class="sapUiPopupWithPadding" 
-		items="{/GrupoLojas}" 
+		items="{/GrupoLojasSet}" 
 		liveChange="_handleF4grupoLojasSearch"
 		search="_handleF4grupoLojasSearch" 
 		confirm="_handleF4grupoLojasClose" 

@@ -43,8 +43,7 @@ sap.ui.define([
 		},
 		loadUserData: function () {
 			var globalModel = this.getModel("globalModel");
-			this.getOwnerComponent().getModel().read(`/Usuario`, {
-				//this.getOwnerComponent().getModel().read(`/Usuario('${this.sUname }')`, {
+			this.getOwnerComponent().getModel().read(`/UsuarioSet`, {
 				success: (res) => {
 					this.aEkgrp = [];
 					for (let usrGrp of res.results) {
@@ -78,24 +77,6 @@ sap.ui.define([
 			})
 			this._idAppntOverSeven.setVisible(bHasValueOver18);
 		},
-		// _buscaLogado: function () {
-		// 	var globalModel = this.getModel("globalModel");
-		// 	var localModel = this.getModel();
-		// 	var sUname = window.location.href.includes("localhost") || window.location.href.includes("webide") ? "9066004" : sap.ushell.Container //90660049067001
-		// 		.getUser().getId();
-		// 	var sObjectPath = localModel.createKey("/Usuario", {
-		// 		Uname: sUname
-		// 	});
-		// 	localModel.read(sObjectPath, {
-		// 		method: "GET",
-		// 		success: function (oData2, oResponse) {
-		// 			globalModel.setProperty("/Ekgrp", oData2.Ekgrp);
-		// 			globalModel.setProperty("/Uname", oData2.Uname);
-		// 			globalModel.setProperty("/Nome", oData2.Nome);
-		// 		}.bind(this),
-		// 		error: function (oError) {}
-		// 	});
-		// },
 		_buscaLogadoSync: function () {
 			sap.ui.core.BusyIndicator.show(0);
 			return new Promise((resolve, reject) => {
@@ -103,8 +84,8 @@ sap.ui.define([
 				var localModel = this.getModel();
 				var sUname = window.location.href.includes("localhost") || window.location.href.includes("trial") ? "9067001" : sap.ushell.Container
 					.getUser().getId();
-				debugger;
-				var sObjectPath = localModel.createKey("/Usuario", {
+				
+				var sObjectPath = localModel.createKey("/UsuarioSet", {
 					Uname: sUname
 				});
 				localModel.read(sObjectPath, {
@@ -176,30 +157,6 @@ sap.ui.define([
 				}
 			}); // navigate to Supplier application
 		},
-		// goToPedidos: function (oEvt) {
-
-		// 	var oAppnt = this._planningCalendar.getModel().getProperty(this._oDetailsPopover.oAppointment.getBindingContext().sPath);
-
-		// 	var globalModel = this.getModel("globalModel");
-		// 	var sEkgrp = globalModel.getProperty("/Ekgrp");
-		// 	var sUname = globalModel.getProperty("/Uname");
-		// 	globalModel.setProperty("/Lifnr", oAppnt.lifnr);
-		// 	if (sEkgrp === undefined || sUname === undefined) {
-		// 		this._buscaLogadoSync().then((res) => {
-		// 			this.getRouter().navTo("busca", {
-		// 				Ekgrp: res[0],
-		// 				Uname: res[1],
-		// 				Lifnr: oAppnt.lifnr
-		// 			}, true);
-		// 		})
-		// 	} else {
-		// 		this.getRouter().navTo("busca", {
-		// 			Ekgrp: sEkgrp,
-		// 			Uname: sUname,
-		// 			Lifnr: oAppnt.lifnr
-		// 		}, true);
-		// 	}
-		// },
 		onBtnPedidoPress: function (oEvent) {
 			var globalModel = this.getModel("globalModel");
 			var sEkgrp = globalModel.getProperty("/Ekgrp");
@@ -217,43 +174,6 @@ sap.ui.define([
 					Uname: sUname
 				}, true);
 			}
-
-			// var oView = this.getView();
-			// var localModel = this.getModel();
-			// var sObjectPath = localModel.createKey("/Usuario", {
-			// 	Uname: sUname
-			// });
-
-			// localModel.read(sObjectPath, {
-			// 	method: "GET",
-			// 	success: function (oData2, oResponse) {
-			// 		sEkgrp = oData2.Ekgrp;
-			// 		sUname = oData2.Uname;
-			// 		globalModel.setProperty("/Ekgrp", sEkgrp);
-			// 		globalModel.setProperty("/Uname", sUname);
-			// 		oView.setBusy(false);
-			// 		that.getRouter().navTo("busca", {
-			// 			Ekgrp: sEkgrp,
-			// 			Uname: sUname
-			// 		}, true);
-			// 	},
-			// 	error: function (oError) {
-			// 		oView.setBusy(false);
-			// 		sap.m.MessageBox.error("Comprador " + sUname + " n\xE3o foi encontrado.", {
-			// 			title: "Comprador Inexistente"
-			// 		});
-			// 		/*
-			// 		var sInputValue = oEvent.getSource().getDescription();
-			// 		this.inputId = oEvent.getSource().getId();
-			// 		if (!this._F4compradorDialog) {
-			// 			this._F4compradorDialog = sap.ui.xmlfragment("dma.zgenericos.view.fragment.comprador", this);
-			// 			this.getView().addDependent(this._F4compradorDialog);
-			// 		}
-			// 		// open value help dialog filtered by the input value
-			// 		this._F4compradorDialog.open(sInputValue);
-			// 		*/
-			// 	}
-			// });
 		},
 		onBtnCommodPress: function (oEvent) {
 			var globalModel = this.getModel("globalModel");
@@ -357,6 +277,7 @@ sap.ui.define([
 			});
 		},
 		loadAppointments: function (dStartDate) {
+            return;
 			var oModel = new JSONModel();
 			var sRootPath = jQuery.sap.getModulePath("zgenericos");
 
@@ -367,7 +288,7 @@ sap.ui.define([
 				value1: this.sUname
 			}));
 			this._planningCalendar.setBusy(true);
-			this.getOwnerComponent().getModel().read("/AgendaItem", {
+			this.getOwnerComponent().getModel().read("/AgendaItemSet", {
 				filters: aFilters,
 				success: (res) => {
 

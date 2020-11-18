@@ -26,12 +26,12 @@ sap.ui.define([
             var compradorInput = this.byId("compradorInput");
             var fornecedorInput = this.byId("fornecedorInput");
             if (sEkgrp && sEkgrp.length > 0) {
-                this.getOwnerComponent().getModel().read(`/Comprador(Ekgrp='${sEkgrp}')`, {
+                this.getOwnerComponent().getModel().read(`/CompradorSet(Ekgrp='${sEkgrp}')`, {
                     success: (res) => {
                         compradorInput.setDescription(res.Nome);
                         compradorInput.setValue(res.Ekgrp);
                         if (sLifnr && sLifnr.length > 0) {
-                            this.getOwnerComponent().getModel().read(`/Fornecedor(Ekgrp='${sEkgrp}',Lifnr='${sLifnr}')`, {
+                            this.getOwnerComponent().getModel().read(`/FornecedorSet(Ekgrp='${sEkgrp}',Lifnr='${sLifnr}')`, {
                                 success: (res) => {
                                     fornecedorInput.setDescription(res.Mcod1);
                                     fornecedorInput.setValue(res.Lifnr);
@@ -95,6 +95,7 @@ sap.ui.define([
 
             var sEkgrp = this.byId("compradorInput").getValue();
             var sLifnr = this.byId("fornecedorInput").getValue();
+            var sLifnrEsp = this.byId("fornecedorEspecifcoInput").getValue();
             // agrupa todos os filtros da tela
             var aFilters = [];
             this.montaFiltros(aFilters, true);
@@ -102,14 +103,15 @@ sap.ui.define([
             // executa busca dos produtos na ficha técnica
             var that = this;
             sap.ui.core.BusyIndicator.show();
-            localModel.read("/POBusca", {
+            localModel.read("/POBuscaSet", {
                 method: "GET",
                 filters: aFilters,
                 success: function (oData2, oResponse) {
                     sap.ui.core.BusyIndicator.hide();
                     that.getRouter().navTo("pedido", {
                         Ekgrp: sEkgrp,
-                        Lifnr: sLifnr
+                        Lifnr: sLifnr,
+                        LifnrEsp: sLifnrEsp
                     }, true);
                 },
                 error: function (oError) {
@@ -448,7 +450,7 @@ sap.ui.define([
             if (oSelectedItem) {
                 var compradorInput = this.getView().byId(this.inputId);
                 var sEkgrp = oSelectedItem.getTitle();
-                var sObjectPath = this.getModel().createKey("/Comprador", {
+                var sObjectPath = this.getModel().createKey("/CompradorSet", {
                     Ekgrp: sEkgrp
                 });
 
@@ -475,10 +477,29 @@ sap.ui.define([
             this._F4fornecedorDialog.getBinding("items").filter([oFilter]);
             this._F4fornecedorDialog.open(sInputValue);
         },
+        onF4FornecedorEspecifico: function (oEvent) {
+            var sInputValue = oEvent.getSource().getDescription();
+            var sEkgrp = this.byId("compradorInput").getValue();
+            var sLifnrGen = this.byId("fornecedorInput").getValue();
+            this.inputId = oEvent.getSource().getId();
+            // create value help dialog
+            if (!this._F4fornecedorEspecificoDialog) {
+                this._F4fornecedorEspecificoDialog = sap.ui.xmlfragment("dma.zgenericos.view.fragment.fornecedorEspecifico", this);
+                this.getView().addDependent(this._F4fornecedorEspecificoDialog);
+            }
+            // set previous filter - if comprador is filled
+            var oFilter = new sap.ui.model.Filter("Ekgrp", sap.ui.model.FilterOperator.EQ, sEkgrp.toUpperCase());
+            var oFilterLifnrGen = new sap.ui.model.Filter("LifnrGen", sap.ui.model.FilterOperator.EQ, sLifnrGen.toUpperCase());
+            //TODO adicionar filtro do fornecedor pai
+            // open value help dialog filtered by the input value
+            this._F4fornecedorEspecificoDialog.getBinding("items").filter([oFilter, oFilterLifnrGen]);
+            this._F4fornecedorEspecificoDialog.open(sInputValue);
+        },
         clearFornecedor: function (oEvent) {
             var fornecedorInput = this.byId("fornecedorInput");
             fornecedorInput.setValue("");
             fornecedorInput.setDescription("");
+            this.clearFornecedorEspecifico();
             this.clearContrato(oEvent);
             this.habilitaBotaoPedido();
         },
@@ -502,9 +523,36 @@ sap.ui.define([
             aFilters.push(oCompr);
             oEvent.getSource().getBinding("items").filter(aFilters);
         },
+        _handleF4fornecedorEspecificoSearch: function (oEvent) {
+            var aFilters = [];
+            var sValue = oEvent.getParameter("value");
+            // Filtro Fornecedor - Nome
+            // no backend a busca é feita usando OR para Código (LIFNR) e Nome (Mcod1)
+            var oForn = new sap.ui.model.Filter("Mcod1", sap.ui.model.FilterOperator.Contains, sValue.toUpperCase());
+            aFilters.push(oForn);
+            // Filtro Comprador
+            var sEkgrp = this.byId("compradorInput").getValue();
+            var oCompr = new sap.ui.model.Filter("Ekgrp", sap.ui.model.FilterOperator.EQ, sEkgrp.toUpperCase());
+            //TODO Adicionar filtro fornecedor pai
+            aFilters.push(oCompr);
+            oEvent.getSource().getBinding("items").filter(aFilters);
+        },
         _handleF4fornecedorClose: function (oEvent) {
             var oSelectedItem = oEvent.getParameter("selectedItem");
             if (oSelectedItem) {
+
+                var fornecedorInput = this.getView().byId(this.inputId);
+                fornecedorInput.setValue(oSelectedItem.getTitle());
+                fornecedorInput.setDescription(oSelectedItem.getDescription());
+                this.clearContrato(oEvent);
+            }
+            oEvent.getSource().getBinding("items").filter([]);
+            this.habilitaBotaoPedido();
+        },
+        _handleF4fornecedorEspecificoClose: function (oEvent) {
+            var oSelectedItem = oEvent.getParameter("selectedItem");
+            if (oSelectedItem) {
+
                 var fornecedorInput = this.getView().byId(this.inputId);
                 fornecedorInput.setValue(oSelectedItem.getTitle());
                 fornecedorInput.setDescription(oSelectedItem.getDescription());
@@ -572,8 +620,9 @@ sap.ui.define([
             // Filtro Comprador
             var sEkgrp = this.byId("compradorInput").getValue();
             var sLifnr = this.byId("fornecedorInput").getValue();
+            var sLifnrEsp = this.byId("fornecedorEspecifcoInput").getValue();
 
-            if ((sEkgrp === "") || (sLifnr === "")) {
+            if ((sEkgrp === "") || (sLifnr === "") || (sLifnrEsp === "")) {
                 aFilters = null;
             } else {
                 // Filtro Comprador
@@ -583,11 +632,18 @@ sap.ui.define([
                     value1: sEkgrp.toUpperCase()
                 });
                 aFilters.push(fEkgrp);
+                // Filtro Fornecedor Generico
+                var fLifnrGen = new sap.ui.model.Filter({
+                    path: "LifnrGen",
+                    operator: sap.ui.model.FilterOperator.EQ,
+                    value1: sLifnr.toUpperCase()
+                });
+                aFilters.push(fLifnrGen);
                 // Filtro Fornecedor
                 var fLifnr = new sap.ui.model.Filter({
                     path: "Lifnr",
                     operator: sap.ui.model.FilterOperator.EQ,
-                    value1: sLifnr.toUpperCase()
+                    value1: sLifnrEsp.toUpperCase()
                 });
                 aFilters.push(fLifnr);
                 // Filtro UF

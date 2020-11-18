@@ -4,10 +4,10 @@
 	<SelectDialog
 		title="Fornecedor"
 		class="sapUiPopupWithPadding"
-		items="{/FornecGenericoSet}"
-		liveChange="_handleF4fornecedorSearch"
-		confirm="_handleF4fornecedorClose"
-		cancel="_handleF4fornecedorClose">
+		items="{/FornecRealSet}"
+		liveChange="_handleF4fornecedorEspecificoSearch"
+		confirm="_handleF4fornecedorEspecificoClose"
+		cancel="_handleF4fornecedorEspecificoClose">
 		<StandardListItem
 			icon=""
 			title="{Lifnr}"

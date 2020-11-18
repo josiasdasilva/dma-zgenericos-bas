@@ -4,7 +4,7 @@
 	<SelectDialog
 		title="Fornecedor"
 		class="sapUiPopupWithPadding"
-		items="{/FornecHistorico}"
+		items="{/FornecHistoricoSet}"
 		liveChange="_handleF4fornecedorSearch"
 		confirm="_handleF4fornecedorClose"
 		cancel="_handleF4fornecedorClose">
