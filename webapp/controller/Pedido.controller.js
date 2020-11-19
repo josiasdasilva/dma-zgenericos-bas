@@ -241,9 +241,8 @@ sap.ui.define([
             var sLifnr = globalModel.getProperty("/Lifnr");
             var LifnrEsp = globalModel.getProperty("/LifnrEsp");
 
-            var sObjectPath = localModel.createKey("/FornecReal", {
+            var sObjectPath = localModel.createKey("/FornecRealSet", {
                 Ekgrp: sEkgrp,
-                LifnrGen: sLifnr,
                 Lifnr: LifnrEsp
             });
             this._oTablePedido.bindItems({
@@ -306,7 +305,7 @@ sap.ui.define([
                 return item.sId === oEvent.mParameters.id
             });
 
-            var globalModel = this.getModel("globalModel");
+            var globalModel = this.getModel("globalModel"); 
             var sMatnr = oEvent.getSource().getAggregation("cells")[0].getTitle();
             globalModel.setProperty("/Matnr", sMatnr);
             var sMaabc = oEvent.getSource().getAggregation("cells")[19].getText();

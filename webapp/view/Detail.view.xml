@@ -96,7 +96,7 @@
 															</items>
 														</HBox>
 													</header>
-												</Column>
+												</Column> 
 												<Column width="3.5em" hAlign="End" id="column94">
 													<header>
 														<HBox width="100%" justifyContent="SpaceAround" id="hbox48">
@@ -109,6 +109,18 @@
 														</HBox>
 													</header>
 												</Column>
+												<Column width="3em" hAlign="End" id="column941">
+													<header>
+														<HBox width="100%" justifyContent="SpaceAround" id="hbox481">
+															<items>
+																<Text xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" app:binding="kebtr" text="{i18n>tbl_compra.kebtr}"
+																	id="text551"/>
+																<sap.ui.core:Icon xmlns:sap.ui.core="sap.ui.core" src="sap-icon://sort-ascending" size="0.96em" id="_i_compra_41" useIconTooltip="false"
+																	color="#808080" visible="true" width="30%"/>
+															</items>
+														</HBox>
+													</header>
+												</Column>                                                
 												<Column width="3em" hAlign="End" id="column95">
 													<header>
 														<HBox width="100%" justifyContent="SpaceAround" id="hbox49">
@@ -323,7 +335,9 @@
 															<ObjectNumber number="{path: 'Pmz', formatter: '.formatter.fullNumberStr'}" emphasized="false"/>
 															<ObjectNumber number="{path: 'PrVarej', formatter: '.formatter.fullNumberStr'}" emphasized="false"/>
 															<ObjectNumber number="{path: 'PrAtaca', formatter: '.formatter.fullNumberStr'}" emphasized="false"/>
-															<ObjectNumber number="{path: 'MrgVar', formatter: '.formatter.fullNumberStr'}" emphasized="false"/>
+															<Input  class="inputCompras" width="4em" value="{path: 'Kebtr', formatter: '.formatter.float2digStr' }" liveChange="checkPriceChange"
+                                                             fieldWidth="100%" type="Text" valueLiveUpdate="true"/>
+                                                            <ObjectNumber number="{path: 'MrgVar', formatter: '.formatter.fullNumberStr'}" emphasized="false"/>
 															<ObjectNumber number="{path: 'MrgAta', formatter: '.formatter.fullNumberStr'}" emphasized="false"/>
 															<ObjectNumber
 																number="{= ${globalModel>/colVlrCompra} ? ${path: 'VlrVendaMm', formatter: '.formatter.fullNumberStr'} : ${path: 'QtdVendaMm', formatter: '.formatter.float2digStr'} }"

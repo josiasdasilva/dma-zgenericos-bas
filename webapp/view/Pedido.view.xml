@@ -274,7 +274,7 @@
 				<l:flexContent>
 					<ScrollContainer height="99%" vertical="true" focusable="true">
 						<Table id="tablePedido" busyIndicatorDelay="{worklistView>/tableBusyDelay}" class="tableTelaPedido"
-							noDataText="{worklistView>/tableNoDataText}" updateFinished="onUpdateFinished" items="{/PO}" swipe="handleSwipe"
+							noDataText="{worklistView>/tableNoDataText}" updateFinished="onUpdateFinished" items="{/POSet}" swipe="handleSwipe"
 							swipeDirection="LeftToRight" delete="onDeletePress" mode="Delete" growingThreshold="200" growing="true" growingScrollToLoad="true">
 							<items>
 								<ColumnListItem class="tableLinhaPedido" press="toDetail" id="listItemPedido_copy_tablePedido_0" detailPress="toDetail" type="Active">
