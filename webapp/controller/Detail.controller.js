@@ -351,6 +351,11 @@ sap.ui.define([
         },
         checkPriceChange: function (oEvt) {
 
+            for (let item of this._compraTable.getItems()) {
+                item.getCells()[4].setValueState(sap.ui.core.ValueState.None);
+            }
+
+
             let oData = oEvt.getSource().getModel().getProperty(oEvt.getSource().getBindingContext().sPath);
             let nPreco = oEvt.mParameters.value;
             nPreco = this.toDecimal(nPreco)
@@ -366,40 +371,47 @@ sap.ui.define([
             if (aEbelnEbelpSet.size > 1) {
                 var bCompact = !!this.getView().$().closest(".sapUiSizeCompact").length;
                 MessageBox.confirm(
-                    "Existe mais de um contrato/item para o mesmo material. Deseja alterar o preços desses contratos/item também?",
+                    this.getOwnerComponent().getModel("i18n").getResourceBundle().getText("msg_trocar_todos_contratos"),
                     {
-                        actions: [sap.m.MessageBox.Action.OK, sap.m.MessageBox.Action.CANCEL],
+                        actions: [sap.m.MessageBox.Action.YES, sap.m.MessageBox.Action.NO],
                         styleClass: bCompact ? "sapUiSizeCompact" : "",
-                        onClose: function (sAction) {
+                        onClose: (sAction) => {
                             if (sAction === sap.m.MessageBox.Action.YES) {
                                 for (let item of this._compraTable.getItems()) {
                                     let oDataEbelnEbelpItem = item.getModel().getProperty(item.getBindingContext().sPath)
-                                    if (item.getBindingContext().sPath !== oEvt.getSource().getBindingContext().sPath) {
-                                        item.getModel().setProperty(item.getBindingContext().sPath + '/Kebtr', nPreco);
-                                        item.getCells()[4].setValue(nPreco);
-                                    }
+
+                                    item.getModel().setProperty(item.getBindingContext().sPath + '/Kebtr', nPreco);
+                                    item.getCells()[4].setValue(formatter.fullNumberStr(nPreco));
+
+                                    item.getCells()[4].setValueState(sap.ui.core.ValueState.Warning);
+                                    item.getCells()[4].setValueStateText(this.getOwnerComponent().getModel("i18n").getResourceBundle().getText("modified"));
+
+
                                 }
                             } else if (sAction === sap.m.MessageBox.Action.NO) {
                                 for (let item of this._compraTable.getItems()) {
                                     let oDataEbelnEbelpItem = item.getModel().getProperty(item.getBindingContext().sPath)
-                                    if (item.getBindingContext().sPath !== oEvt.getSource().getBindingContext().sPath
-                                        && oDataEbelnEbelpItem.Ebeln === oData.Ebeln
+                                    if (oDataEbelnEbelpItem.Ebeln === oData.Ebeln
                                         && oDataEbelnEbelpItem.Ebelp === oData.Ebelp) {
                                         item.getModel().setProperty(item.getBindingContext().sPath + '/Kebtr', nPreco);
-                                        item.getCells()[4].setValue(nPreco);
+                                        item.getCells()[4].setValue(formatter.fullNumberStr(nPreco));
+
+                                        item.getCells()[4].setValueState(sap.ui.core.ValueState.Warning);
+                                        item.getCells()[4].setValueStateText(this.getOwnerComponent().getModel("i18n").getResourceBundle().getText("modified"));
+
 
                                     }
                                 }
                             }
 
-                            for (let item of this._compraTable.getItems()) {
-                                if (item.getModel().getProperty(item.getBindingContext().sPath) !== oEvt.getSource().getBindingContext().sPath || (item.getModel().getProperty(item.getBindingContext().sPath + '/Kebtr') !== item.getModel().getProperty(item.getBindingContext().sPath + '/KebtrOri'))) {
+                            /*for (let item of this._compraTable.getItems()) {
+                                if ((item.getModel().getProperty(item.getBindingContext().sPath + '/Kebtr') !== item.getModel().getProperty(item.getBindingContext().sPath + '/KebtrOri'))) {
                                     item.getCells()[4].setValueState(sap.ui.core.ValueState.Warning);
                                     item.getCells()[4].setValueStateText(this.getOwnerComponent().getModel("i18n").getResourceBundle().getText("modified"));
                                 } else {
                                     item.getCells()[4].setValueState(sap.ui.core.ValueState.None);
                                 }
-                            }
+                            }*/
 
                         }
                     }
@@ -407,22 +419,26 @@ sap.ui.define([
             } else {
                 for (let item of this._compraTable.getItems()) {
                     let oDataEbelnEbelpItem = item.getModel().getProperty(item.getBindingContext().sPath)
-                    if (item.getBindingContext().sPath !== oEvt.getSource().getBindingContext().sPath
-                        && oDataEbelnEbelpItem.Ebeln === oData.Ebeln
+                    if (oDataEbelnEbelpItem.Ebeln === oData.Ebeln
                         && oDataEbelnEbelpItem.Ebelp === oData.Ebelp) {
                         item.getModel().setProperty(item.getBindingContext().sPath + '/Kebtr', nPreco);
-                        item.getCells()[4].setValue(nPreco);
+                        item.getCells()[4].setValue(formatter.fullNumberStr(nPreco));
+
+                        item.getCells()[4].setValueState(sap.ui.core.ValueState.Warning);
+                        item.getCells()[4].setValueStateText(this.getOwnerComponent().getModel("i18n").getResourceBundle().getText("modified"));
+
+
                     }
                 }
 
-                for (let item of this._compraTable.getItems()) {
+                /*for (let item of this._compraTable.getItems()) {
                     if (item.getModel().getProperty(item.getBindingContext().sPath) !== oEvt.getSource().getBindingContext().sPath || (item.getModel().getProperty(item.getBindingContext().sPath + '/Kebtr') !== item.getModel().getProperty(item.getBindingContext().sPath + '/KebtrOri'))) {
                         item.getCells()[4].setValueState(sap.ui.core.ValueState.Warning);
                         item.getCells()[4].setValueStateText(this.getOwnerComponent().getModel("i18n").getResourceBundle().getText("modified"));
                     } else {
                         item.getCells()[4].setValueState(sap.ui.core.ValueState.None);
                     }
-                }
+                }*/
 
             }
 
@@ -714,11 +730,10 @@ sap.ui.define([
                 for (var i = 0; i < scompraTable.getItems().length; i++) {
                     var colRequisicao = scompraTable.getItems()[i].getCells()[this._colInput];
                     qtdeRequisicao = colRequisicao.getValue() === "" ? "0" : colRequisicao.getValue();
-                    
-                    let novoPreco = this.toDecimal(scompraTable.getItems()[1].getCells()[4].getValue());
-        
+
+
                     if (qtdeRequisicao !== colRequisicao.getBindingInfo("value").binding.oValue
-                        || ( novoPreco !== scompraTable.getItems()[i].getModel().getProperty(scompraTable.getItems()[i].getBindingContext().sPath).KebtrOri)) {
+                        || (scompraTable.getItems()[i].getModel().getProperty(scompraTable.getItems()[i].getBindingContext().sPath).Kebtr !== scompraTable.getItems()[i].getModel().getProperty(scompraTable.getItems()[i].getBindingContext().sPath).KebtrOri)) {
 
                         qtdeTotal += parseInt(qtdeRequisicao, 10);
                         var sPath = scompraTable.getItems()[i].getBindingContext().sPath;
@@ -727,7 +742,7 @@ sap.ui.define([
                         payLoad.Lifnr = scompraTable.getItems()[i].getBindingContext().getProperty("Lifnr");
                         payLoad.Matnr = scompraTable.getItems()[i].getBindingContext().getProperty("Matnr");
                         payLoad.Werks = scompraTable.getItems()[i].getBindingContext().getProperty("Werks");
-                        payLoad.Kebtr = novoPreco;
+                        payLoad.Kebtr = scompraTable.getItems()[i].getModel().getProperty(scompraTable.getItems()[i].getBindingContext().sPath).Kebtr;
 
                         //conversao vazio para zero string
                         payLoad.Requisicao = qtdeRequisicao;

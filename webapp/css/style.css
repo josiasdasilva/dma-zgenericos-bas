@@ -141,12 +141,25 @@ html.sap-desktop .sapMShellAppWidthLimited .sapMShellCentralBox {
 .sapMLabel  { font-size: 0.700rem }
 */
 
+.inputQty{
+    width: 4em;
+    position: relative;
+    left: -1em;
+}
+
+.objNegMargin{
+width: 70%;
+}
+
 .linkContrato {
     font-size: 0.700rem !important;
     text-align: left !important;
+    left: -0.4em;
+    position: relative;
 }
 
 .columnLoja {
+
     padding-left: 0rem !important;
 }
 

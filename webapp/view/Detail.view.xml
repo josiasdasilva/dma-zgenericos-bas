@@ -311,26 +311,26 @@
 															<!--<Text text="{Werks}" />-->
 															<!--<Text text="{Uf}"/>-->
 															<!--<Text text="{Bandeira}"/>-->
-															<ObjectNumber number="{path: 'Pmz', formatter: '.formatter.fullNumberStr'}" emphasized="false"/>
-															<ObjectNumber number="{path: 'PrVarej', formatter: '.formatter.fullNumberStr'}" emphasized="false"/>
-															<ObjectNumber number="{path: 'PrAtaca', formatter: '.formatter.fullNumberStr'}" emphasized="false"/>
-															<Input  class="inputCompras" width="3em" value="{path: 'Kebtr', formatter: '.formatter.float2digStr' }" liveChange="checkPriceChange"
-                                                             fieldWidth="100%" type="Text" valueLiveUpdate="true"/>
-                                                            <ObjectNumber number="{path: 'MrgVar', formatter: '.formatter.fullNumberStr'}" emphasized="false"/>
-															<ObjectNumber number="{path: 'MrgAta', formatter: '.formatter.fullNumberStr'}" emphasized="false"/>
-															<ObjectNumber
+															<ObjectNumber class="objNegMargin" number="{path: 'Pmz', formatter: '.formatter.fullNumberStr'}" emphasized="false"/>
+															<ObjectNumber class="objNegMargin" number="{path: 'PrVarej', formatter: '.formatter.fullNumberStr'}" emphasized="false"/>
+															<ObjectNumber class="objNegMargin"  number="{path: 'PrAtaca', formatter: '.formatter.fullNumberStr'}" emphasized="false"/>
+															<Input  class="inputCompras objNegMargin" width="3em" value="{path: 'Kebtr', formatter: '.formatter.float2digStr' }" liveChange="checkPriceChange"
+                                                             fieldWidth="80%" type="Text" valueLiveUpdate="true"/>
+                                                            <ObjectNumber class="objNegMargin" number="{path: 'MrgVar', formatter: '.formatter.fullNumberStr'}" emphasized="false"/>
+															<ObjectNumber class="objNegMargin" number="{path: 'MrgAta', formatter: '.formatter.fullNumberStr'}" emphasized="false"/>
+															<ObjectNumber class="objNegMargin"
 																number="{= ${globalModel>/colVlrCompra} ? ${path: 'VlrVendaMm', formatter: '.formatter.fullNumberStr'} : ${path: 'QtdVendaMm', formatter: '.formatter.float2digStr'} }"
 																emphasized="false"/>
-															<ObjectNumber
+															<ObjectNumber class="objNegMargin"
 																number="{= ${globalModel>/colVlrCompra} ? ${path: 'VlrVendaM1', formatter: '.formatter.fullNumberStr'} : ${path: 'QtdVendaM1', formatter: '.formatter.float2digStr'} }"
 																emphasized="false"/>
-															<ObjectNumber
+															<ObjectNumber class="objNegMargin"
 																number="{= ${globalModel>/colVlrCompra} ? ${path: 'VlrVendaM2', formatter: '.formatter.fullNumberStr'} : ${path: 'QtdVendaM2', formatter: '.formatter.float2digStr'} }"
 																emphasized="false"/>
-															<ObjectNumber
+															<ObjectNumber class="objNegMargin"
 																number="{= ${globalModel>/colVlrCompra} ? ${path: 'VlrVendaM3', formatter: '.formatter.fullNumberStr'} : ${path: 'QtdVendaM3', formatter: '.formatter.float2digStr'} }"
 																emphasized="false"/>
-															<ObjectNumber number="{path: 'Dtultcp', formatter: '.formatter.dateFormatDdMm'}" emphasized="false"/>
+															<ObjectNumber  number="{path: 'Dtultcp', formatter: '.formatter.dateFormatDdMm'}" emphasized="false"/>
 															<ObjectNumber number="{path: 'Dtultvd', formatter: '.formatter.dateFormatDdMm'}" emphasized="false"/>
 															<ObjectNumber number="{path: 'Estloja', formatter: '.formatter.fullNumberStr'}" emphasized="false"/>
 															<!--<ObjectNumber number="{path: 'Esttrf', formatter: '.formatter.fullNumberStr'}" emphasized="false"/>-->
@@ -341,7 +341,7 @@
 															<!--		<Input id="inputSugestao_copy2" class="inputCompras" width="4em" value="{path: 'Requisicao', type: 'sap.ui.model.type.Integer' }"
 																fieldWidth="100%" type="Number" liveChange="_onLiveChangeInput" change="_onChangeInput" showTableSuggestionValueHelp="false"
 																startSuggestion="0" valueLiveUpdate="true"/>-->
-															<Input id="inputSugestao_copy2" class="inputCompras" width="4em" value="{path: 'Requisicao', formatter: '.formatter.zeroToEmpty' }"
+															<Input id="inputSugestao_copy2" class="inputCompras inputQty" width="3em" value="{path: 'Requisicao', formatter: '.formatter.zeroToEmpty' }"
 																fieldWidth="100%" type="Text" liveChange="_onLiveChangeInput" change="_onChangeInput" showTableSuggestionValueHelp="false"
 																startSuggestion="0" valueLiveUpdate="true"/>
 															<Text text="{UnidadeCp}"/>
