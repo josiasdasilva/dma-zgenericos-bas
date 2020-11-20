@@ -229,28 +229,7 @@
 														</HBox>
 													</header>
 												</Column>
-												<!--<Column width="3em" hAlign="End">-->
-												<!--	<header>-->
-												<!--		<HBox width="100%" justifyContent="SpaceAround" alignContent="SpaceBetween">-->
-												<!--			<items>-->
-												<!--				<Text text="{i18n>tbl_compra.estoque_troca}" app:binding="Esttrf"/>-->
-												<!--				<sap.ui.core:Icon src="sap-icon://sort-ascending" size="0.96em" id="_i_compra_10_copy" useIconTooltip="false" color="#808080" visible="true"-->
-												<!--					width="30%"/>-->
-												<!--			</items>-->
-												<!--		</HBox>-->
-												<!--	</header>-->
-												<!--</Column>-->
-												<!--<Column width="4em" hAlign="End">-->
-												<!--	<header>-->
-												<!--		<HBox width="100%" justifyContent="SpaceAround">-->
-												<!--			<items>-->
-												<!--				<Text text="{i18n>tbl_compra.ped_pend_central}" app:binding="QtppendCent"/>-->
-												<!--				<sap.ui.core:Icon src="sap-icon://sort-ascending" size="0.96em" id="_i_compra_11_copy" useIconTooltip="false" color="#808080" visible="true"-->
-												<!--					width="30%"/>-->
-												<!--			</items>-->
-												<!--		</HBox>-->
-												<!--	</header>-->
-												<!--</Column>-->
+
 												<Column width="3.5em" hAlign="End" id="column104">
 													<header>
 														<HBox width="100%" justifyContent="SpaceAround" id="hbox58">
@@ -335,7 +314,7 @@
 															<ObjectNumber number="{path: 'Pmz', formatter: '.formatter.fullNumberStr'}" emphasized="false"/>
 															<ObjectNumber number="{path: 'PrVarej', formatter: '.formatter.fullNumberStr'}" emphasized="false"/>
 															<ObjectNumber number="{path: 'PrAtaca', formatter: '.formatter.fullNumberStr'}" emphasized="false"/>
-															<Input  class="inputCompras" width="4em" value="{path: 'Kebtr', formatter: '.formatter.float2digStr' }" liveChange="checkPriceChange"
+															<Input  class="inputCompras" width="3em" value="{path: 'Kebtr', formatter: '.formatter.float2digStr' }" liveChange="checkPriceChange"
                                                              fieldWidth="100%" type="Text" valueLiveUpdate="true"/>
                                                             <ObjectNumber number="{path: 'MrgVar', formatter: '.formatter.fullNumberStr'}" emphasized="false"/>
 															<ObjectNumber number="{path: 'MrgAta', formatter: '.formatter.fullNumberStr'}" emphasized="false"/>

@@ -350,34 +350,88 @@ sap.ui.define([
             this.recoverSortConfig('faceamentoTable');
         },
         checkPriceChange: function (oEvt) {
-            debugger;
+
             let oData = oEvt.getSource().getModel().getProperty(oEvt.getSource().getBindingContext().sPath);
+            let nPreco = oEvt.mParameters.value;
+            nPreco = this.toDecimal(nPreco)
+            this.getModel("globalModel").setProperty("/Alterado", true);
+            this.byId('botaoGravarSugestao').setEnabled(true);
             var aEbelnEbelpSet = new Set();
             for (let item of this._compraTable.getItems()) {
                 let oDataEbelnEbelp = item.getModel().getProperty(item.getBindingContext().sPath)
                 aEbelnEbelpSet.add(oDataEbelnEbelp.Ebeln + oDataEbelnEbelp.Ebelp);
+                console.log(`${oDataEbelnEbelp.Ebeln} -  ${oDataEbelnEbelp.Ebelp}`);
             }
             //Mais de um contrato
-            if (aEbelnEbelpSet.length > 0) {
+            if (aEbelnEbelpSet.size > 1) {
                 var bCompact = !!this.getView().$().closest(".sapUiSizeCompact").length;
-                MessageBox.error(
+                MessageBox.confirm(
                     "Existe mais de um contrato/item para o mesmo material. Deseja alterar o preços desses contratos/item também?",
                     {
                         actions: [sap.m.MessageBox.Action.OK, sap.m.MessageBox.Action.CANCEL],
                         styleClass: bCompact ? "sapUiSizeCompact" : "",
                         onClose: function (sAction) {
-                            if (sAction === sap.m.MessageBox.Action.OK) {
-                                debugger;
+                            if (sAction === sap.m.MessageBox.Action.YES) {
+                                for (let item of this._compraTable.getItems()) {
+                                    let oDataEbelnEbelpItem = item.getModel().getProperty(item.getBindingContext().sPath)
+                                    if (item.getBindingContext().sPath !== oEvt.getSource().getBindingContext().sPath) {
+                                        item.getModel().setProperty(item.getBindingContext().sPath + '/Kebtr', nPreco);
+                                        item.getCells()[4].setValue(nPreco);
+                                    }
+                                }
+                            } else if (sAction === sap.m.MessageBox.Action.NO) {
+                                for (let item of this._compraTable.getItems()) {
+                                    let oDataEbelnEbelpItem = item.getModel().getProperty(item.getBindingContext().sPath)
+                                    if (item.getBindingContext().sPath !== oEvt.getSource().getBindingContext().sPath
+                                        && oDataEbelnEbelpItem.Ebeln === oData.Ebeln
+                                        && oDataEbelnEbelpItem.Ebelp === oData.Ebelp) {
+                                        item.getModel().setProperty(item.getBindingContext().sPath + '/Kebtr', nPreco);
+                                        item.getCells()[4].setValue(nPreco);
+
+                                    }
+                                }
                             }
+
+                            for (let item of this._compraTable.getItems()) {
+                                if (item.getModel().getProperty(item.getBindingContext().sPath) !== oEvt.getSource().getBindingContext().sPath || (item.getModel().getProperty(item.getBindingContext().sPath + '/Kebtr') !== item.getModel().getProperty(item.getBindingContext().sPath + '/KebtrOri'))) {
+                                    item.getCells()[4].setValueState(sap.ui.core.ValueState.Warning);
+                                    item.getCells()[4].setValueStateText(this.getOwnerComponent().getModel("i18n").getResourceBundle().getText("modified"));
+                                } else {
+                                    item.getCells()[4].setValueState(sap.ui.core.ValueState.None);
+                                }
+                            }
+
                         }
                     }
                 );
+            } else {
+                for (let item of this._compraTable.getItems()) {
+                    let oDataEbelnEbelpItem = item.getModel().getProperty(item.getBindingContext().sPath)
+                    if (item.getBindingContext().sPath !== oEvt.getSource().getBindingContext().sPath
+                        && oDataEbelnEbelpItem.Ebeln === oData.Ebeln
+                        && oDataEbelnEbelpItem.Ebelp === oData.Ebelp) {
+                        item.getModel().setProperty(item.getBindingContext().sPath + '/Kebtr', nPreco);
+                        item.getCells()[4].setValue(nPreco);
+                    }
+                }
+
+                for (let item of this._compraTable.getItems()) {
+                    if (item.getModel().getProperty(item.getBindingContext().sPath) !== oEvt.getSource().getBindingContext().sPath || (item.getModel().getProperty(item.getBindingContext().sPath + '/Kebtr') !== item.getModel().getProperty(item.getBindingContext().sPath + '/KebtrOri'))) {
+                        item.getCells()[4].setValueState(sap.ui.core.ValueState.Warning);
+                        item.getCells()[4].setValueStateText(this.getOwnerComponent().getModel("i18n").getResourceBundle().getText("modified"));
+                    } else {
+                        item.getCells()[4].setValueState(sap.ui.core.ValueState.None);
+                    }
+                }
+
             }
-            //Atualizar o preço de todos os items para o mesmo contrato item
-            debugger;
-            for (let item of aEbelnEbelpSet.keys()) {
-                let sEbeln = item.substring(0, 10);
-                let sEbelp = item.substring(10);
+
+        },
+        toDecimal: function (sValue) {
+            if (sValue.includes(',')) {
+                return sValue.replace(/\./g, '').replace(/,/g, '.')
+            } else {
+                return sValue;
             }
         },
         //FAFN - Begin
@@ -548,34 +602,6 @@ sap.ui.define([
                 zIcon.setSrc("sap-icon://sort-ascending");
             }
         },
-        // onChangeFilterColumn: function (oEvent) {
-        // 	var oValue = oEvent.getParameter("value");
-        // 	var oMultipleValues = oValue.split(",");
-        // 	var aFilters = [];
-        // 	for (var i = 0; i < oMultipleValues.length; i++) {
-        // 		var oFilter = new Filter(this._oColumnFilterPopover.bindingValue, "Contains", oMultipleValues[i]);
-        // 		aFilters.push(oFilter)
-        // 	}
-        // 	var oItems = this._oColumnFilterPopover.oTabela.getBinding("items");
-        // 	oItems.filter(aFilters, "Application");
-        // 	this._oColumnFilterPopover.close();
-        // },
-        // onAscending: function () {
-        // 	var oItems = this._oColumnFilterPopover.oTabela.getBinding("items");
-        // 	var oSorter = new Sorter(this._oColumnFilterPopover.bindingValue);
-
-        // 	var oIcon = this.byId("_i_compra_"+this._oColumnFilterPopover.bindingValue);
-
-        // 	oItems.sort(oSorter);
-        // 	this._oColumnFilterPopover.close();
-        // },
-        // onDescending: function () {
-        // 	var oItems = this._oColumnFilterPopover.oTabela.getBinding("items");
-        // 	var oSorter = new Sorter(this._oColumnFilterPopover.bindingValue);
-        // 	oSorter.bDescending = true;
-        // 	oItems.sort(oSorter, true);
-        // 	this._oColumnFilterPopover.close();
-        // }, //FAFN - End				
         _onLiveChangeInput: function (oEvent) {
             var actualValue = oEvent.getParameter("value");
             var lastValue = oEvent.getSource()._lastValue;
@@ -669,6 +695,7 @@ sap.ui.define([
             }
         },
         gravaValores: function (oEvent) {
+            debugger;
             var oView = this.getView();
             var qtdeTotal = 0,
                 qtdeRequisicao = 0;
@@ -687,11 +714,12 @@ sap.ui.define([
                 for (var i = 0; i < scompraTable.getItems().length; i++) {
                     var colRequisicao = scompraTable.getItems()[i].getCells()[this._colInput];
                     qtdeRequisicao = colRequisicao.getValue() === "" ? "0" : colRequisicao.getValue();
-                    if (qtdeRequisicao !== colRequisicao.getBindingInfo("value").binding.oValue) {
-                        //qtdeRequisicao = colRequisicao.getValue() === "" ? "0" : colRequisicao.getValue();
-                        //////// 	Enviando todos os dados todas as vezes
-                        //					qtdeSugestao = scompraTable.getItems()[i].getAggregation("cells")[18].getProperty("number");
-                        //					if (qtdeRequisicao !== qtdeSugestao) {
+                    
+                    let novoPreco = this.toDecimal(scompraTable.getItems()[1].getCells()[4].getValue());
+        
+                    if (qtdeRequisicao !== colRequisicao.getBindingInfo("value").binding.oValue
+                        || ( novoPreco !== scompraTable.getItems()[i].getModel().getProperty(scompraTable.getItems()[i].getBindingContext().sPath).KebtrOri)) {
+
                         qtdeTotal += parseInt(qtdeRequisicao, 10);
                         var sPath = scompraTable.getItems()[i].getBindingContext().sPath;
                         var payLoad = {};
@@ -699,6 +727,8 @@ sap.ui.define([
                         payLoad.Lifnr = scompraTable.getItems()[i].getBindingContext().getProperty("Lifnr");
                         payLoad.Matnr = scompraTable.getItems()[i].getBindingContext().getProperty("Matnr");
                         payLoad.Werks = scompraTable.getItems()[i].getBindingContext().getProperty("Werks");
+                        payLoad.Kebtr = novoPreco;
+
                         //conversao vazio para zero string
                         payLoad.Requisicao = qtdeRequisicao;
                         oModel.update(sPath, payLoad, {

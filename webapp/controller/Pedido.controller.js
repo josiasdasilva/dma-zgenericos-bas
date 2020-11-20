@@ -22,6 +22,7 @@ sap.ui.define([
         _oTablePedido: null,
         formatter: formatter,
         onInit: function () {
+            delete this.indexPressedItem;
             this.getRouter().getRoute("pedido").attachPatternMatched(this.onObjectMatched, this);
 
             this._oTablePedidoHeader = this.getView().byId("tablePedidoHeader");
