@@ -259,7 +259,7 @@ sap.ui.define([
             var localModel = this.getModel();
             var sObjectPath = localModel.createKey("/POSumSet", {
                 Ekgrp: globalModel.getProperty("/Ekgrp"),
-                Lifnr: globalModel.getProperty("/Lifnr")
+                Lifnr: globalModel.getProperty("/LifnrEsp")
             });
 
             localModel.read(sObjectPath, {
@@ -394,23 +394,10 @@ sap.ui.define([
                     sap.ui.core.BusyIndicator.hide();
                     if (oData2.Nroseq > 0) {
                         this.dialogoCriaPedido(oData2, oData2.Nroseq);
-                        // sap.m.MessageBox.success("Número de pedidos criados: " + oData2.Ebeln.toString() + "\n" +
-                        // 	oData2.Mensagem, {
-                        // 		title: "Pedido Criado com sucesso",
-                        // 		onClose: that.getRouter().navTo("busca", {
-                        // 			Ekgrp: globalModel.getProperty("/Ekgrp"),
-                        // 			Uname: globalModel.getProperty("/Uname"),
-                        // 			Lifnr: ""
-                        // 		}, true),
-                        // 		//details: oData2.Mensagem,
-                        // 		actions: [MessageBox.Action.OK],
-                        // 		initialFocus: MessageBox.Action.OK,
-                        // 		styleClass: sResponsivePaddingClasses
-                        // 	});
                     } else {
-                        sap.m.MessageBox.error("Erro na criação do Pedido.\n" +
+                        sap.m.MessageBox.error(this.getText("erro_criacao_pedido") + "\n" +
                             oData2.Mensagem, {
-                            title: "Pedido não Criado. ",
+                            title: this.getText("pedido_nao_criado"),
                             actions: [MessageBox.Action.OK],
                             initialFocus: MessageBox.Action.OK,
                             //details: oData2.Mensagem,
@@ -421,7 +408,7 @@ sap.ui.define([
                 error: (oError) => {
                     sap.ui.core.BusyIndicator.hide();
                     sap.m.MessageBox.error("Erro", {
-                        title: "Pedido não Criado",
+                        title: this.getText("pedido_nao_criado"),
                         initialFocus: null,
                         styleClass: sResponsivePaddingClasses
                     });
