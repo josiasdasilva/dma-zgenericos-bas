@@ -350,7 +350,7 @@ sap.ui.define([
             this.recoverSortConfig('faceamentoTable');
         },
         checkPriceChange: function (oEvt) {
-
+            
             for (let item of this._compraTable.getItems()) {
                 item.getCells()[4].setValueState(sap.ui.core.ValueState.None);
             }
@@ -664,9 +664,12 @@ sap.ui.define([
             var globalModel = this.getModel("globalModel");
             var sEkgrp = globalModel.getProperty("/Ekgrp");
             var sLifnr = globalModel.getProperty("/Lifnr");
+            var sLifnrEsp = globalModel.getProperty("/LifnrEsp");
+            
             this.getRouter().navTo("pedido", {
                 Ekgrp: sEkgrp,
-                Lifnr: sLifnr
+                Lifnr: sLifnr,
+                LifnrEsp: sLifnrEsp
             }, true);
         },
         onNavBack: function (oEvent) {
@@ -761,11 +764,13 @@ sap.ui.define([
                         var globalModel = this.getModel("globalModel");
                         var sEkgrp = globalModel.getProperty("/Ekgrp");
                         var sLifnr = globalModel.getProperty("/Lifnr");
+                        var sLifnrEsp = globalModel.getProperty("/LifnrEsp");
                         sap.ui.core.BusyIndicator.hide();
                         if (btnNavBack) {
                             this.getRouter().navTo("pedido", {
                                 Ekgrp: sEkgrp,
-                                Lifnr: sLifnr
+                                Lifnr: sLifnr,
+                                LifnrEsp: sLifnrEsp
                             }, true);
                         }
                         this.byId("headerDetail").setNumber(qtdeTotal);

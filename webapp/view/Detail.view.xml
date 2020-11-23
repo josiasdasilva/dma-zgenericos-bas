@@ -314,7 +314,7 @@
 															<ObjectNumber class="objNegMargin" number="{path: 'Pmz', formatter: '.formatter.fullNumberStr'}" emphasized="false"/>
 															<ObjectNumber class="objNegMargin" number="{path: 'PrVarej', formatter: '.formatter.fullNumberStr'}" emphasized="false"/>
 															<ObjectNumber class="objNegMargin"  number="{path: 'PrAtaca', formatter: '.formatter.fullNumberStr'}" emphasized="false"/>
-															<Input  class="inputCompras objNegMargin" width="3em" value="{path: 'Kebtr', formatter: '.formatter.float2digStr' }" liveChange="checkPriceChange"
+															<Input  class="inputCompras objNegMargin" width="3em" value="{path: 'Kebtr', formatter: '.formatter.float2digStr' }" change="checkPriceChange"
                                                              fieldWidth="80%" type="Text" valueLiveUpdate="true"/>
                                                             <ObjectNumber class="objNegMargin" number="{path: 'MrgVar', formatter: '.formatter.fullNumberStr'}" emphasized="false"/>
 															<ObjectNumber class="objNegMargin" number="{path: 'MrgAta', formatter: '.formatter.fullNumberStr'}" emphasized="false"/>
