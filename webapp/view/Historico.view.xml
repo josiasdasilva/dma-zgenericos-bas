@@ -29,7 +29,7 @@
 										<items>
 											<Label text="Loja" required="true" width="100%"/>
 											<MultiInput width="100%" id="lojaInput" placeholder="Escolha a Loja ..."
-												suggestionItems="{ path: '/LojasHistorico', sorter: { path: 'Werks' }}" valueHelpRequest="onF4Loja" tokenChange="onF4lojaTokenUpdate"
+												suggestionItems="{ path: '/LojasHistoricoSet', sorter: { path: 'Werks' }}" valueHelpRequest="onF4Loja" tokenChange="onF4lojaTokenUpdate"
 												valueHelpOnly="true">
 												<core:Item key="{Werks}" text="{Nome}"/></MultiInput>
 										</items>
