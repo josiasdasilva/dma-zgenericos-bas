@@ -110,8 +110,8 @@ sap.ui.define([
                     sap.ui.core.BusyIndicator.hide();
                     that.getRouter().navTo("pedido", {
                         Ekgrp: sEkgrp,
-                        Lifnr: sLifnr,
-                        LifnrEsp: sLifnrEsp
+                        LifnrGen: sLifnr,
+                        Lifnr: sLifnrEsp
                     }, true);
                 },
                 error: function (oError) {

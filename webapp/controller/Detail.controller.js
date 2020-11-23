@@ -304,7 +304,7 @@ sap.ui.define([
             var sEkgrp = oEvent.getParameter("arguments").Ekgrp;
             globalModel.setProperty("/Ekgrp", sEkgrp);
             //var sLifnr = oEvent.getParameter("arguments").Lifnr;
-            var sLifnr = oEvent.getParameter("arguments").LifnrEsp;
+            var sLifnr = oEvent.getParameter("arguments").Lifnr;
             globalModel.setProperty("/Lifnr", sLifnr);
             var sMatnr = oEvent.getParameter("arguments").Matnr;
             globalModel.setProperty("/Matnr", sMatnr);
@@ -664,12 +664,12 @@ sap.ui.define([
             var globalModel = this.getModel("globalModel");
             var sEkgrp = globalModel.getProperty("/Ekgrp");
             var sLifnr = globalModel.getProperty("/Lifnr");
-            var sLifnrEsp = globalModel.getProperty("/LifnrEsp");
+            var sLifnrGen = globalModel.getProperty("/LifnrGen");
             
             this.getRouter().navTo("pedido", {
                 Ekgrp: sEkgrp,
                 Lifnr: sLifnr,
-                LifnrEsp: sLifnrEsp
+                LifnrGen: sLifnrGen
             }, true);
         },
         onNavBack: function (oEvent) {
@@ -678,7 +678,7 @@ sap.ui.define([
             let globalModel = this.getModel("globalModel");
             let sEkgrp = globalModel.getProperty("/Ekgrp");
             let sLifnr = globalModel.getProperty("/Lifnr");
-            let sLifnrEsp = globalModel.getProperty("/LifnrEsp");
+            let sLifnrGen = globalModel.getProperty("/LifnrGen");
             let sAlterado = globalModel.getProperty("/Alterado");
 
             if (sAlterado) {
@@ -700,7 +700,7 @@ sap.ui.define([
                             this.getRouter().navTo("pedido", {
                                 Ekgrp: sEkgrp,
                                 Lifnr: sLifnr,
-                                LifnrEsp: sLifnrEsp
+                                LifnrGen: sLifnrGen
                             }, true);
                         }
                     }
@@ -709,7 +709,7 @@ sap.ui.define([
                 this.getRouter().navTo("pedido", {
                     Ekgrp: sEkgrp,
                     Lifnr: sLifnr,
-                    LifnrEsp: sLifnrEsp
+                    LifnrGen: sLifnrGen
                 }, true);
             }
         },
@@ -764,13 +764,13 @@ sap.ui.define([
                         var globalModel = this.getModel("globalModel");
                         var sEkgrp = globalModel.getProperty("/Ekgrp");
                         var sLifnr = globalModel.getProperty("/Lifnr");
-                        var sLifnrEsp = globalModel.getProperty("/LifnrEsp");
+                        var sLifnrGen = globalModel.getProperty("/LifnrGen");
                         sap.ui.core.BusyIndicator.hide();
                         if (btnNavBack) {
                             this.getRouter().navTo("pedido", {
                                 Ekgrp: sEkgrp,
                                 Lifnr: sLifnr,
-                                LifnrEsp: sLifnrEsp
+                                LifnrGen: sLifnrGen
                             }, true);
                         }
                         this.byId("headerDetail").setNumber(qtdeTotal);

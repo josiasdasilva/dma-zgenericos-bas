@@ -47,7 +47,7 @@ sap.ui.define([
             //FAFN - End
             this.getView().byId("_i_pedido_0").setColor("#f00000");
         },
-	    
+        
         //FAFN - Begin
         onClickColumnHeader: function (oID) {
             let sID = oID;
@@ -142,12 +142,12 @@ sap.ui.define([
         },
         setSortConfig: function (sField, bIsAsc, sId) {
             let oConfigSort = localStorage.getItem('sortConfig') ? JSON.parse(localStorage.getItem('sortConfig')) : null;
-			/*			let oConfigSort = aConfigSort.find((item) => {
-							return item.field === sField;
-						})*/
-			/*			if (oConfigSort) {
-							oConfigSort.isAsc = bIsAsc;
-						} else {*/
+            /*          let oConfigSort = aConfigSort.find((item) => {
+                            return item.field === sField;
+                        })*/
+            /*          if (oConfigSort) {
+                            oConfigSort.isAsc = bIsAsc;
+                        } else {*/
             oConfigSort = {
                 field: sField,
                 isAsc: bIsAsc,
@@ -227,7 +227,7 @@ sap.ui.define([
             globalModel.setProperty("/colVlrPedido", this._segPedido.getProperty("selectedKey") === "real");
             globalModel.setProperty("/Ekgrp", oEvent.getParameter("arguments").Ekgrp);
             globalModel.setProperty("/Lifnr", oEvent.getParameter("arguments").Lifnr);
-            globalModel.setProperty("/LifnrEsp", oEvent.getParameter("arguments").LifnrEsp);
+            globalModel.setProperty("/LifnrGen", oEvent.getParameter("arguments").LifnrGen);
             
 
             this.updateTable();
@@ -240,11 +240,11 @@ sap.ui.define([
             var globalModel = this.getModel("globalModel");
             var sEkgrp = globalModel.getProperty("/Ekgrp");
             var sLifnr = globalModel.getProperty("/Lifnr");
-            var LifnrEsp = globalModel.getProperty("/LifnrEsp");
+            var LifnrGen = globalModel.getProperty("/LifnrGen");
 
             var sObjectPath = localModel.createKey("/FornecRealSet", {
                 Ekgrp: sEkgrp,
-                Lifnr: LifnrEsp
+                Lifnr: sLifnr
             });
             this._oTablePedido.bindItems({
                 path: sObjectPath + "/POSet",
@@ -259,7 +259,7 @@ sap.ui.define([
             var localModel = this.getModel();
             var sObjectPath = localModel.createKey("/POSumSet", {
                 Ekgrp: globalModel.getProperty("/Ekgrp"),
-                Lifnr: globalModel.getProperty("/LifnrEsp")
+                Lifnr: globalModel.getProperty("/Lifnr")
             });
 
             localModel.read(sObjectPath, {
@@ -314,7 +314,7 @@ sap.ui.define([
             this.getRouter().navTo("detail", {
                 Ekgrp: globalModel.getProperty("/Ekgrp"),
                 Lifnr: globalModel.getProperty("/Lifnr"),
-                LifnrEsp: globalModel.getProperty("/LifnrEsp"), 
+                LifnrGen: globalModel.getProperty("/LifnrGen"), 
                 Matnr: sMatnr,
                 Werks: globalModel.getProperty("/Werks")
             }, true);

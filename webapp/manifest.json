@@ -134,13 +134,13 @@
 					"target": "pedidoprint"
 				},
 				{
-					"pattern": "PO/{Ekgrp}/{Lifnr}/{LifnrEsp}",
+					"pattern": "PO/{Ekgrp}/{LifnrGen}/{Lifnr}",
 					"name": "pedido",
 					"target": "pedido",
 					"subroutes": [
 						{
 							"name": "detail",
-							"pattern": "PO/{Ekgrp}/{Lifnr}/{LifnrEsp}/{Matnr}",
+							"pattern": "PO/{Ekgrp}/{Lifnr}/{LifnrGen}/{Matnr}",
 							"target": "detail"
 						}
 					]
