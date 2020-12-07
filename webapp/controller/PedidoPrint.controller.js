@@ -12,7 +12,7 @@ sap.ui.define([
 			var oHtml = this.getView().byId("idFrame");
 			var localModel = this.getModel();
 
-			var sObjectPath = localModel.createKey("/PrnPedido", {
+			var sObjectPath = localModel.createKey("/PrnPedidoSet", {
 				Ebeln: sEbeln
 			});
 			localModel.read(sObjectPath + "/$value", {
@@ -39,7 +39,7 @@ sap.ui.define([
 			var oHtml = this.getView().byId("idFrame");
 			var localModel = this.getModel();
 
-			var sObjectPath = localModel.createKey("/PrnPedido", {
+			var sObjectPath = localModel.createKey("/PrnPedidoSet", {
 				Ebeln: sEbeln
 			});
 			var sURL = sObjectPath + "/$value";

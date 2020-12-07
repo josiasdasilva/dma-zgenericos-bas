@@ -444,7 +444,7 @@ sap.ui.define([
 			if (oSelectedItem) {
 				var compradorInput = this.getView().byId(this.inputId);
 				var sEkgrp = oSelectedItem.getTitle();
-				var sObjectPath = this.getModel().createKey("/Comprador", {
+				var sObjectPath = this.getModel().createKey("/CompradorSet", {
 					Ekgrp: sEkgrp
 				});
 

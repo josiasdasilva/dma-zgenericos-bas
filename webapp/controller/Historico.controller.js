@@ -122,7 +122,7 @@ sap.ui.define([
 			if (oSelectedItem) {
 				var compradorInput = this.getView().byId(this.inputId);
 				var sEkgrp = oSelectedItem.getTitle();
-				var sObjectPath = this.getModel().createKey("/Comprador", {
+				var sObjectPath = this.getModel().createKey("/CompradorSet", {
 					Ekgrp: sEkgrp
 				});
 
@@ -333,7 +333,7 @@ sap.ui.define([
 				}
 				sEbeln = sEbeln + tbl_items[i].getAggregation('cells')[0].getProperty('text');
 			}
-			var sObjectPath = localModel.createKey("/PrnPedido", {
+			var sObjectPath = localModel.createKey("/PrnPedidoSet", {
 				Ebeln: sEbeln
 			});
 			var sURL = localModel.sServiceUrl + sObjectPath + "/$value";

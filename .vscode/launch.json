@@ -2,7 +2,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Run dma-zgenericos-bas",
+      "name": "Run zgenericos-bas",
       "type": "node",
       "request": "launch",
       "program": "${workspaceFolder}/node_modules/@sap/html5-repo-mock/index.js",
@@ -10,7 +10,7 @@
       "env": {
         "PORT": "6004",
         "MOCK_LOOKUP_DIRS": "[\"webapp\"]",
-        "run.config": "{\"handlerId\":\"ui5_flat_run_config_handler_id\",\"runnableId\":\"/home/user/projects/dma-zgenericos-bas\"}"
+        "run.config": "{\"handlerId\":\"ui5_flat_run_config_handler_id\",\"runnableId\":\"/home/user/projects/zgenericos-bas\"}"
       },
       "args": [
         "--standalone",
@@ -18,8 +18,8 @@
         "--ui5",
         "{\"version\":\"1.38.48\"}"
       ],
-      "envFile": "${workspaceFolder}/.env5",
-      "preLaunchTask": "Build dma-zgenericos-bas"
+      "envFile": "${workspaceFolder}/.env6",
+      "preLaunchTask": "Build zgenericos-bas"
     }
   ]
 }
