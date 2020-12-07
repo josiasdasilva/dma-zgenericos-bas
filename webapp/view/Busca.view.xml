@@ -137,7 +137,7 @@
 								<headerToolbar>
 									<Toolbar width="100%" height="auto">
 										<content>
-											<Title text="Seleção" width="100%"/>
+											<Title text="{i18n>selecao}" width="100%"/>
 											<ToolbarSeparator/>
 											<Button width="auto" id="lojasDelete" icon="sap-icon://delete" press="deletePressLojas"/>
 										</content>
@@ -241,7 +241,7 @@
 								<headerToolbar>
 									<Toolbar width="100%" id="__toolbar1_copy3">
 										<content>
-											<Title text="Produto" width="100%" id="__title0_copy3"/>
+											<Title text="{i18n>produto}" width="100%" id="__title0_copy3"/>
 											<ToolbarSeparator id="__separator1"/>
 											<Button width="auto" id="produtoCheckAll" icon="sap-icon://accept" press="setCheckProduto"/>
 											<Button width="auto" id="produtoDelete" icon="sap-icon://delete" press="clearSelectedProduto"/>

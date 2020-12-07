@@ -1,17 +1,17 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
-	<Dialog title="Pedido(s) criado com sucesso">
-		<Table xmlns:core="sap.ui.core" xmlns="sap.m" noDataText="No Products Found" items="{path:'/PedCriadoSet'}" mode="None" width="auto" id="table1">
+	<Dialog title="{i18n>pedido_sucesso}">
+		<Table xmlns:core="sap.ui.core" xmlns="sap.m" noDataText="{i18n>nopedido}" items="{path:'/PedCriadoSet'}" mode="None" width="auto" id="table1">
 		    <columns>
 		        <Column hAlign="Center" width="10em" id="column2">
 		            <header>
-		                <Label text="Pedido" id="label5"/>
+		                <Label text="{i18n>pedido}" id="label5"/>
 		                
 		            </header>
 		            
 		        </Column>
 		        <Column hAlign="Center" width="10em" id="column3">
 		            <header>
-		                <Label text="Loja" id="label6"/>
+		                <Label text="{i18n>loja}" id="label6"/>
 		                
 		            </header>
 		            
@@ -29,9 +29,9 @@
 		    </items>
 		    </Table>
 		<buttons>
-			<Button text="Imprime" press="_handlePedCriadoPrint" icon="sap-icon://print"/>
-			<Button text="e-Mail" press="_openPedCriadoEmail" icon="sap-icon://email"/> 
-			<Button text="Fecha" press="_handlePedCriadoClose" type="Reject"/>
+			<Button text="{i18n>imprime}" press="_handlePedCriadoPrint" icon="sap-icon://print"/>
+			<Button text="{i18n>email}" press="_openPedCriadoEmail" icon="sap-icon://email"/> 
+			<Button text="{i18n>fecha}" press="_handlePedCriadoClose" type="Reject"/>
 		</buttons>
 		<content/>
 	</Dialog>
