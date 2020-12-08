@@ -1,3 +1,4 @@
+const local_i18n = this.getOwnerComponent().getModel("i18n").getResourceBundle();
 sap.ui.define([
     "dma/zgenericos/controller/BaseController",
     "sap/ui/model/json/JSONModel",
@@ -96,7 +97,7 @@ sap.ui.define([
         },
         onDeleteLojaSum: function (oEvent) {
             let sBindContext = oEvent.getParameter("listItem").getBindingContext();
-            let oBundle = this.getOwnerComponent().getModel("i18n").getResourceBundle();
+            let oBundle = local_i18n;
             let oTable = sap.ui.getCore().byId('idLojasSum--idLojaSumTabela');
 
             MessageBox.confirm(oBundle.getText("eliminaLoja"), {
@@ -274,11 +275,12 @@ sap.ui.define([
         },
         onNavBack: function (oEvent) {
             var globalModel = this.getModel("globalModel");
+            let oBundle = local_i18n;
 
             delete this.indexPressedItem;
 
-            MessageBox.confirm(this.getView().getModel("i18n").getResourceBundle().getText("sairPedido"), {
-                title: this.getView().getModel("i18n").getResourceBundle().getText("sairPedidoTitulo"),
+            MessageBox.confirm(oBundle.getText("sairPedido"), {
+                title: oBundle.getText("sairPedidoTitulo"),
                 actions: [
                     MessageBox.Action.YES,
                     MessageBox.Action.NO
@@ -451,6 +453,7 @@ sap.ui.define([
         _handlePedCriadoEmail: function (oEvent) {
             var globalModel = this.getModel("globalModel");
             var localModel = this.getModel();
+            var oBundle = local_i18n;
             var aFilters = [];
 
             var tbl_items = this._PedCriadoDialog.getContent()[0].getItems();
@@ -491,7 +494,7 @@ sap.ui.define([
                 filters: aFilters,
                 success: function (oData2, oResponse) {
                     sap.ui.core.BusyIndicator.hide();
-                    sap.m.MessageBox.success("Email(s) enviado(s) com sucesso", {
+                    sap.m.MessageBox.success(oBundle.getText("email_sucesso"), {
                         title: "Email",
                         actions: [MessageBox.Action.OK],
                         initialFocus: MessageBox.Action.OK,
@@ -540,18 +543,19 @@ sap.ui.define([
             var localModel = this.getModel();
             var sEkgrp = globalModel.getProperty("/Ekgrp");
             var sLifnr = globalModel.getProperty("/Lifnr");
+            let oBundle = local_i18n;
 
-            MessageBox.confirm("Deseja imprimir o espelho do pedido?", {
-                title: "Espelho do Pedido",
+            MessageBox.confirm(oBundle.getText("deseja_espelho"), {
+                title: oBundle.getText("espelho_pedido"),
                 actions: [
-                    "Analítico",
-                    "Sintético",
+                    oBundle.getText("analitico"),
+                    oBundle.getText("sintetico"),
                     MessageBox.Action.CANCEL
                 ],
-                emphasizedAction: "Analítico",
-                initialFocus: "Analítico",
+                emphasizedAction: oBundle.getText("analitico"),
+                initialFocus: oBundle.getText("analitico"),
                 onClose: (oAction) => {
-                    if (oAction === "Analítico") {
+                    if (oAction === oBundle.getText("analitico")) {
                         var sObjectPath = localModel.createKey("/PrnMateriaisLojasSet", {
                             Ekgrp: sEkgrp,
                             Lifnr: sLifnr
@@ -559,7 +563,7 @@ sap.ui.define([
                         var sURL = localModel.sServiceUrl + sObjectPath + "/$value";
                         window.open(sURL, '_blank');
                     }
-                    if (oAction === "Sintético") {
+                    if (oAction === oBundle.getText("sintetico")) {
                         var sObjectPath = localModel.createKey("/PrnMaterialSet", {
                             Ekgrp: sEkgrp,
                             Lifnr: sLifnr

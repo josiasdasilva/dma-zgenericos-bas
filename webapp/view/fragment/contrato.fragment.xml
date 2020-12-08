@@ -2,7 +2,7 @@
 	xmlns="sap.m"
 	xmlns:core="sap.ui.core">
 	<SelectDialog
-		title="Contrato"
+		title="{i18n>contrato}"
 		class="sapUiPopupWithPadding"
 		items="{/ContratoSet}"
 		liveChange="_handleF4contratoSearch"

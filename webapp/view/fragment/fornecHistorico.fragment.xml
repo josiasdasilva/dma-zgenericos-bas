@@ -2,7 +2,7 @@
 	xmlns="sap.m"
 	xmlns:core="sap.ui.core">
 	<SelectDialog
-		title="Fornecedor"
+		title="{i18n>supplier}"
 		class="sapUiPopupWithPadding"
 		items="{/FornecHistoricoSet}"
 		liveChange="_handleF4fornecedorSearch"

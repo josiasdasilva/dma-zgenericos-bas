@@ -2,7 +2,7 @@
 	xmlns="sap.m"
 	xmlns:core="sap.ui.core">
 	<SelectDialog
-		title="Comprador"
+		title="{i18n>comprador}"
 		class="sapUiPopupWithPadding"
 		items="{/CompradorSet}"
 		liveChange="_handleF4compradorSearch"

@@ -1,5 +1,9 @@
-<mvc:View controllerName="dma.zgenericos.controller.PedidoPrint" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc"
-	xmlns:core="sap.ui.core" displayBlock="true" xmlns="sap.m">
+<mvc:View controllerName="dma.zgenericos.controller.PedidoPrint" 
+    xmlns:html="http://www.w3.org/1999/xhtml" 
+    xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core" 
+    displayBlock="true" 
+    xmlns="sap.m">
 	<Page title="Display PDF">
 		<content>
 			<core:HTML id="idFrame"/>

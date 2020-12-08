@@ -2,7 +2,7 @@
 	xmlns="sap.m"
 	xmlns:core="sap.ui.core">
 	<SelectDialog
-		title="Lojas"
+		title="{i18n>lojas}"
 		class="sapUiPopupWithPadding"
 		items="{/CDSet}"
 		liveChange="_handleF4LojasSearch"
