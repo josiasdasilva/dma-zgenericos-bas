@@ -350,7 +350,7 @@ sap.ui.define([
             this.recoverSortConfig('faceamentoTable');
         },
         checkPriceChange: function (oEvt) {
-            
+
             for (let item of this._compraTable.getItems()) {
                 item.getCells()[4].setValueState(sap.ui.core.ValueState.None);
             }
@@ -609,8 +609,10 @@ sap.ui.define([
             }
             for (var i = 0; i < oQtde; i++) {
                 let zIcon = this.byId(prefIcone + i.toString());
-                zIcon.setColor("#808080");
-                zIcon.setSrc("sap-icon://sort-ascending");
+                if (zIcon) {
+                    zIcon.setColor("#808080");
+                    zIcon.setSrc("sap-icon://sort-ascending");
+                }
             }
             if (oFirst) {
                 let zIcon = this.byId(prefIcone + "0");
@@ -665,7 +667,7 @@ sap.ui.define([
             var sEkgrp = globalModel.getProperty("/Ekgrp");
             var sLifnr = globalModel.getProperty("/Lifnr");
             var sLifnrGen = globalModel.getProperty("/LifnrGen");
-            
+
             this.getRouter().navTo("pedido", {
                 Ekgrp: sEkgrp,
                 Lifnr: sLifnr,
