@@ -841,7 +841,7 @@ sap.ui.define([
             var sLifnr = globalModel.getProperty("/Lifnr");
             var sMatnr = globalModel.getProperty("/Matnr");
 
-            var sObjectPath = localModel.createKey("/PrnLojas", {
+            var sObjectPath = localModel.createKey("/PrnLojasSet", {
                 Ekgrp: sEkgrp,
                 Lifnr: sLifnr,
                 Matnr: sMatnr
