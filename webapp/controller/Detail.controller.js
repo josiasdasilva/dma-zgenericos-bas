@@ -17,7 +17,8 @@ sap.ui.define([
         _vendaTableHeader: null,
         _faceamentoTableHeader: null,
         _segCompra: null,
-        _colInput: null,
+        _colRequisicao: null,
+        _colPrContrato: null,
         onInit: function () {
             //var oViewModel = new JSONModel({ busy: false, delay: 0 });
             //var globalModel = this.getModel("globalModel");
@@ -340,9 +341,11 @@ sap.ui.define([
             // this.resetFilters(oEvent);
             // Busca número da coluna de input
             for (var i = 0; i < this._compraTable.mAggregations.columns.length; i++) {
-                if (this._compraTable.mAggregations.columns[i].sId.includes("colinputSugestao")) {
-                    this._colInput = i + 1;
-                    break;
+                if (this._compraTable.mAggregations.columns[i].sId.includes("Sugestao")) {
+                    this._colRequisicao = i;
+                }
+                if (this._compraTable.mAggregations.columns[i].sId.includes("Kebtr")) {
+                    this._colPrContrato = i;
                 }
             }
             this.recoverSortConfig('compraTable');
@@ -639,29 +642,30 @@ sap.ui.define([
             }
             this.updateTotalTelaLocal();
         },
-        _onSavePress: function (oEvent) {
-            var scompraTable = this.byId("compraTable");
-            var oModel = scompraTable.getModel();
-            var that = this;
-            // faz o update na tabela via oData-PUT
-            var sPath = oEvent.getSource().getBindingContext().sPath;
-            var payLoad = {};
-            payLoad.Ekgrp = oEvent.getSource().getBindingContext().getProperty("Ekgrp");
-            payLoad.Lifnr = oEvent.getSource().getBindingContext().getProperty("Lifnr");
-            payLoad.Matnr = oEvent.getSource().getBindingContext().getProperty("Matnr");
-            payLoad.Werks = oEvent.getSource().getBindingContext().getProperty("Werks");
-            payLoad.Requisicao = oEvent.getSource().getParent().getCells()[this._colInput].getValue();
-            oModel.update(sPath, payLoad, {
-                success: function (oData, oResponse) {
-                    //sap.m.MessageToast.show(" updated Successfully");
-                    that.updateTotalTela();
-                },
-                error: function (oError) {
-                    //sap.m.MessageToast.show("  failure");
-                }
-            }); // apaga o refresh desse item
-            //oEvent.getSource().getParent().getAggregation("cells")[this._colInput].setVisible(false);
-        },
+        // _onSavePress: function (oEvent) {
+        //     var scompraTable = this.byId("compraTable");
+        //     var oModel = scompraTable.getModel();
+        //     var that = this;
+        //     // faz o update na tabela via oData-PUT
+        //     var sPath = oEvent.getSource().getBindingContext().sPath;
+        //     var payLoad = {};
+        //     payLoad.Ekgrp = oEvent.getSource().getBindingContext().getProperty("Ekgrp");
+        //     payLoad.Lifnr = oEvent.getSource().getBindingContext().getProperty("Lifnr");
+        //     payLoad.Matnr = oEvent.getSource().getBindingContext().getProperty("Matnr");
+        //     payLoad.Werks = oEvent.getSource().getBindingContext().getProperty("Werks");
+        //     payLoad.Requisicao = oEvent.getSource().getParent().getCells()[this._colRequisicao].getValue();
+        //     payLoad.Kebtr = oEvent.getSource().getParent().getCells()[this._colPrContrato].getValue();
+        //     oModel.update(sPath, payLoad, {
+        //         success: function (oData, oResponse) {
+        //             //sap.m.MessageToast.show(" updated Successfully");
+        //             that.updateTotalTela();
+        //         },
+        //         error: function (oError) {
+        //             //sap.m.MessageToast.show("  failure");
+        //         }
+        //     }); // apaga o refresh desse item
+        //     //oEvent.getSource().getParent().getAggregation("cells")[this._colRequisicao].setVisible(false);
+        // },
         _onGoToPedido: function (oEvent) {
             var globalModel = this.getModel("globalModel");
             var sEkgrp = globalModel.getProperty("/Ekgrp");
@@ -716,10 +720,8 @@ sap.ui.define([
             }
         },
         gravaValores: function (oEvent) {
-            debugger;
             var oView = this.getView();
-            var qtdeTotal = 0,
-                qtdeRequisicao = 0;
+            var qtdeTotal = 0;
             var btnNavBack = (oEvent.getId() !== 'press');
             var globalModel = this.getModel("globalModel");
             var sAlterado = globalModel.getProperty("/Alterado");
@@ -733,30 +735,32 @@ sap.ui.define([
                 oModel.setUseBatch(true);
                 oModel.setDeferredGroups(["dma1"]);
                 for (var i = 0; i < scompraTable.getItems().length; i++) {
-                    var colRequisicao = scompraTable.getItems()[i].getCells()[this._colInput];
-                    qtdeRequisicao = colRequisicao.getValue() === "" ? "0" : colRequisicao.getValue();
-
-
-                    if (qtdeRequisicao !== colRequisicao.getBindingInfo("value").binding.oValue
-                        || (scompraTable.getItems()[i].getModel().getProperty(scompraTable.getItems()[i].getBindingContext().sPath).Kebtr !== scompraTable.getItems()[i].getModel().getProperty(scompraTable.getItems()[i].getBindingContext().sPath).KebtrOri)) {
-
-                        qtdeTotal += parseInt(qtdeRequisicao, 10);
+                    var colRequisicao = scompraTable.getItems()[i].getCells()[this._colRequisicao].getBinding("value");
+                    var colPrContrato = scompraTable.getItems()[i].getCells()[this._colPrContrato].getBinding("value");
+                    // var colPrContrato = 
+                    // var colPrOriginal = 
+                    colRequisicao.oValue = colRequisicao.oValue === "" ? "0" : colRequisicao.oValue;
+                    colPrContrato.oValue = colPrContrato.oValue === "" ? "0" : colPrContrato.oValue;
+                    // if ((colRequisicao.oValue !== colRequisicao.vOriginalValue) ||
+                    //    (colPrContrato.oValue !== colPrContrato.vOriginalValue)) {
+                    // if (qtdeRequisicao !== colRequisicao.getBindingInfo("value").binding.oValue
+                    //     || (scompraTable.getItems()[i].getModel().getProperty(scompraTable.getItems()[i].getBindingContext().sPath).Kebtr !== scompraTable.getItems()[i].getModel().getProperty(scompraTable.getItems()[i].getBindingContext().sPath).KebtrOri)) {
+                        qtdeTotal += parseInt(colRequisicao.oValue, 10);
                         var sPath = scompraTable.getItems()[i].getBindingContext().sPath;
                         var payLoad = {};
-                        payLoad.Ekgrp = scompraTable.getItems()[i].getBindingContext().getProperty("Ekgrp");
-                        payLoad.Lifnr = scompraTable.getItems()[i].getBindingContext().getProperty("Lifnr");
-                        payLoad.Matnr = scompraTable.getItems()[i].getBindingContext().getProperty("Matnr");
-                        payLoad.Werks = scompraTable.getItems()[i].getBindingContext().getProperty("Werks");
-                        payLoad.Kebtr = scompraTable.getItems()[i].getModel().getProperty(scompraTable.getItems()[i].getBindingContext().sPath).Kebtr;
-
+                        payLoad.Ekgrp = scompraTable.getItems()[i].getModel().getProperty(sPath).Ekgrp;
+                        payLoad.Lifnr = scompraTable.getItems()[i].getModel().getProperty(sPath).Lifnr;
+                        payLoad.Matnr = scompraTable.getItems()[i].getModel().getProperty(sPath).Matnr;
+                        payLoad.Werks = scompraTable.getItems()[i].getModel().getProperty(sPath).Werks;
                         //conversao vazio para zero string
-                        payLoad.Requisicao = qtdeRequisicao;
+                        payLoad.Kebtr = colPrContrato.oValue;
+                        payLoad.Requisicao = colRequisicao.oValue;
                         oModel.update(sPath, payLoad, {
                             groupId: "dma1"
                         });
-                    } else {
-                        qtdeTotal += parseInt(colRequisicao.getBindingInfo("value").binding.oValue, 10);
-                    }
+                    // } else {
+                    //     qtdeTotal += parseInt(colRequisicao.oValue, 10);
+                    // }
                 }
                 sap.ui.core.BusyIndicator.show();
                 oModel.submitChanges({
@@ -815,7 +819,7 @@ sap.ui.define([
             var valorItem = 0;
             var scompraTable = this.byId("compraTable");
             for (var i = 0; i < scompraTable.getItems().length; i++) {
-                valorItem = scompraTable.getItems()[i].getCells()[this._colInput].getValue();
+                valorItem = scompraTable.getItems()[i].getCells()[this._colRequisicao].getValue();
                 if (valorItem > 0) {
                     qtdeTotal += parseInt(valorItem, 10);
                 }

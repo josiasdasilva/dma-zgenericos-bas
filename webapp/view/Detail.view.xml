@@ -378,7 +378,7 @@
                                                     <!-- Preco    -->
                                                     <Column width="2.5em" hAlign="End"/>
 													<!-- PrAtaca    -->
-													<Column width="2.2em" hAlign="End"/>
+													<Column id="_colinputKebtr" width="2.2em" hAlign="End"/>
 													<!--MrgVar-->
 													<Column width="3em" hAlign="End"/>
 													<!--MrgAta-->

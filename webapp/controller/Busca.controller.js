@@ -566,7 +566,8 @@ sap.ui.define([
             var aFilters = [];
             var sInputValue = oEvent.getSource().getDescription();
             var sEkgrp = this.byId("compradorInput").getValue();
-            var sLifnr = this.byId("fornecedorInput").getValue();
+            // var sLifnr = this.byId("fornecedorInput").getValue();
+            var sLifnrEsp = this.byId("fornecedorEspecifcoInput").getValue();
             this.inputId = oEvent.getSource().getId();
             // create value help dialog
             if (!this._F4contratoDialog) {
@@ -577,7 +578,7 @@ sap.ui.define([
             var fEkgrp = new sap.ui.model.Filter("Ekgrp", sap.ui.model.FilterOperator.EQ, sEkgrp.toUpperCase());
             aFilters.push(fEkgrp);
             // Filtro Fornecedor - Codigo
-            var fLifnr = new sap.ui.model.Filter("Lifnr", sap.ui.model.FilterOperator.EQ, sLifnr.toUpperCase());
+            var fLifnr = new sap.ui.model.Filter("Lifnr", sap.ui.model.FilterOperator.EQ, sLifnrEsp.toUpperCase());
             aFilters.push(fLifnr);
             // open value help dialog filtered by the input value
             this._F4contratoDialog.getBinding("items").filter(aFilters);

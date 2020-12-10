@@ -180,3 +180,14 @@ width: 5.3em;
 .columnLabelStyle {
     cursor: pointer !important;
 }
+
+/*
+thead {
+    height: auto !important;
+    position: sticky !important;
+    position: -webkit-sticky;
+    opacity: 1;
+    top: 0rem;
+    z-index: 100;
+}
+*/
