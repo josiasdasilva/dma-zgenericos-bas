@@ -383,26 +383,22 @@ sap.ui.define([
                                 for (let item of this._compraTable.getItems()) {
                                     let oDataEbelnEbelpItem = item.getModel().getProperty(item.getBindingContext().sPath)
 
-                                    item.getModel().setProperty(item.getBindingContext().sPath + '/Kebtr', nPreco);
+                                    //item.getModel().setProperty(item.getBindingContext().sPath + '/Kebtr', nPreco);
                                     item.getCells()[4].setValue(formatter.fullNumberStr(nPreco));
 
                                     item.getCells()[4].setValueState(sap.ui.core.ValueState.Warning);
                                     item.getCells()[4].setValueStateText(this.getOwnerComponent().getModel("i18n").getResourceBundle().getText("modified"));
-
-
                                 }
                             } else if (sAction === sap.m.MessageBox.Action.NO) {
                                 for (let item of this._compraTable.getItems()) {
                                     let oDataEbelnEbelpItem = item.getModel().getProperty(item.getBindingContext().sPath)
                                     if (oDataEbelnEbelpItem.Ebeln === oData.Ebeln
                                         && oDataEbelnEbelpItem.Ebelp === oData.Ebelp) {
-                                        item.getModel().setProperty(item.getBindingContext().sPath + '/Kebtr', nPreco);
+                                        //item.getModel().setProperty(item.getBindingContext().sPath + '/Kebtr', nPreco);
                                         item.getCells()[4].setValue(formatter.fullNumberStr(nPreco));
 
                                         item.getCells()[4].setValueState(sap.ui.core.ValueState.Warning);
                                         item.getCells()[4].setValueStateText(this.getOwnerComponent().getModel("i18n").getResourceBundle().getText("modified"));
-
-
                                     }
                                 }
                             }
@@ -424,13 +420,11 @@ sap.ui.define([
                     let oDataEbelnEbelpItem = item.getModel().getProperty(item.getBindingContext().sPath)
                     if (oDataEbelnEbelpItem.Ebeln === oData.Ebeln
                         && oDataEbelnEbelpItem.Ebelp === oData.Ebelp) {
-                        item.getModel().setProperty(item.getBindingContext().sPath + '/Kebtr', nPreco);
+                        //item.getModel().setProperty(item.getBindingContext().sPath + '/Kebtr', nPreco);
                         item.getCells()[4].setValue(formatter.fullNumberStr(nPreco));
 
                         item.getCells()[4].setValueState(sap.ui.core.ValueState.Warning);
                         item.getCells()[4].setValueStateText(this.getOwnerComponent().getModel("i18n").getResourceBundle().getText("modified"));
-
-
                     }
                 }
 
