@@ -719,6 +719,10 @@ sap.ui.define([
             var hasChanges = false;
             var btnNavBack = (oEvent.getId() !== 'press');
             var globalModel = this.getModel("globalModel");
+            var sEkgrp = globalModel.getProperty("/Ekgrp");
+            var sLifnr = globalModel.getProperty("/Lifnr");
+            var sLifnrGen = globalModel.getProperty("/LifnrGen");
+
             var sAlterado = globalModel.getProperty("/Alterado");
             if (sAlterado) {
                 var scompraTable = this.byId("compraTable");
@@ -766,10 +770,6 @@ sap.ui.define([
                         groupId: "dma1",
                         success: (oData, oResponse) => {
                             oModel.setUseBatch(false);
-                            var globalModel = this.getModel("globalModel");
-                            var sEkgrp = globalModel.getProperty("/Ekgrp");
-                            var sLifnr = globalModel.getProperty("/Lifnr");
-                            var sLifnrGen = globalModel.getProperty("/LifnrGen");
                             sap.ui.core.BusyIndicator.hide();
                             if (btnNavBack) {
                                 this.getRouter().navTo("pedido", {
@@ -789,6 +789,13 @@ sap.ui.define([
                     });
                 } else {
                     this.byId('botaoGravarSugestao').setEnabled(false);
+                    if (btnNavBack) {
+                        this.getRouter().navTo("pedido", {
+                            Ekgrp: sEkgrp,
+                            Lifnr: sLifnr,
+                            LifnrGen: sLifnrGen
+                        }, true);
+                    }
                 }
             }
         },
