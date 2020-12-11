@@ -729,14 +729,15 @@ sap.ui.define([
                 oModel.setUseBatch(true);
                 oModel.setDeferredGroups(["dma1"]);
                 for (var i = 0; i < scompraTable.getItems().length; i++) {
-                    var colRequisicao = scompraTable.getItems()[i].getCells()[this._colRequisicao].getBinding("value");
-                    var colPrContrato = scompraTable.getItems()[i].getCells()[this._colPrContrato].getBinding("value");
-                    // var colPrContrato = 
-                    // var colPrOriginal = 
-                    colRequisicao.oValue = colRequisicao.oValue === "" ? "0" : colRequisicao.oValue;
-                    colPrContrato.oValue = colPrContrato.oValue === "" ? "0" : colPrContrato.oValue;
-                    // if ((colRequisicao.oValue !== colRequisicao.vOriginalValue) ||
-                    //    (colPrContrato.oValue !== colPrContrato.vOriginalValue)) {
+                    var colRequisicao = scompraTable.getItems()[i].getCells()[this._colRequisicao];
+                    var colPrContrato = scompraTable.getItems()[i].getCells()[this._colPrContrato];
+
+                    // Se campo estiver vazio, preenche com 0
+                    colRequisicao.setValue(colRequisicao.getValue() === "" ? "0" : colRequisicao.getValue());
+                    colPrContrato.setValue(colPrContrato.getValue() === "" ? "0" : colPrContrato.getValue());
+
+                    if ((colRequisicao.getValue() !== colRequisicao.getBinding("value").getValue()) ||
+                       (parseFloat(this.toDecimal(colPrContrato.getValue())) !== parseFloat(colPrContrato.getBinding("value").getValue()) )) {
                     // if (qtdeRequisicao !== colRequisicao.getBindingInfo("value").binding.oValue
                     //     || (scompraTable.getItems()[i].getModel().getProperty(scompraTable.getItems()[i].getBindingContext().sPath).Kebtr !== scompraTable.getItems()[i].getModel().getProperty(scompraTable.getItems()[i].getBindingContext().sPath).KebtrOri)) {
                         qtdeTotal += parseInt(colRequisicao.oValue, 10);
@@ -747,14 +748,14 @@ sap.ui.define([
                         payLoad.Matnr = scompraTable.getItems()[i].getModel().getProperty(sPath).Matnr;
                         payLoad.Werks = scompraTable.getItems()[i].getModel().getProperty(sPath).Werks;
                         //conversao vazio para zero string
-                        payLoad.Kebtr = colPrContrato.oValue;
-                        payLoad.Requisicao = colRequisicao.oValue;
+                        payLoad.Kebtr = this.toDecimal(colPrContrato.getValue());
+                        payLoad.Requisicao = colRequisicao.getValue();
                         oModel.update(sPath, payLoad, {
                             groupId: "dma1"
                         });
-                    // } else {
-                    //     qtdeTotal += parseInt(colRequisicao.oValue, 10);
-                    // }
+                    } else {
+                        qtdeTotal += parseInt(colRequisicao.oValue, 10);
+                    }
                 }
                 sap.ui.core.BusyIndicator.show();
                 oModel.submitChanges({
