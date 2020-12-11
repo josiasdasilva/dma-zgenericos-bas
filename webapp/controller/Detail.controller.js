@@ -716,6 +716,7 @@ sap.ui.define([
         gravaValores: function (oEvent) {
             var oView = this.getView();
             var qtdeTotal = 0;
+            var hasChanges = false;
             var btnNavBack = (oEvent.getId() !== 'press');
             var globalModel = this.getModel("globalModel");
             var sAlterado = globalModel.getProperty("/Alterado");
@@ -753,36 +754,42 @@ sap.ui.define([
                         oModel.update(sPath, payLoad, {
                             groupId: "dma1"
                         });
+                        hasChanges = true;
                     } else {
                         qtdeTotal += parseInt(colRequisicao.oValue, 10);
                     }
                 }
-                sap.ui.core.BusyIndicator.show();
-                oModel.submitChanges({
-                    groupId: "dma1",
-                    success: (oData, oResponse) => {
-                        oModel.setUseBatch(false);
-                        var globalModel = this.getModel("globalModel");
-                        var sEkgrp = globalModel.getProperty("/Ekgrp");
-                        var sLifnr = globalModel.getProperty("/Lifnr");
-                        var sLifnrGen = globalModel.getProperty("/LifnrGen");
-                        sap.ui.core.BusyIndicator.hide();
-                        if (btnNavBack) {
-                            this.getRouter().navTo("pedido", {
-                                Ekgrp: sEkgrp,
-                                Lifnr: sLifnr,
-                                LifnrGen: sLifnrGen
-                            }, true);
+                
+                if (hasChanges) {
+                    sap.ui.core.BusyIndicator.show();
+                    oModel.submitChanges({
+                        groupId: "dma1",
+                        success: (oData, oResponse) => {
+                            oModel.setUseBatch(false);
+                            var globalModel = this.getModel("globalModel");
+                            var sEkgrp = globalModel.getProperty("/Ekgrp");
+                            var sLifnr = globalModel.getProperty("/Lifnr");
+                            var sLifnrGen = globalModel.getProperty("/LifnrGen");
+                            sap.ui.core.BusyIndicator.hide();
+                            if (btnNavBack) {
+                                this.getRouter().navTo("pedido", {
+                                    Ekgrp: sEkgrp,
+                                    Lifnr: sLifnr,
+                                    LifnrGen: sLifnrGen
+                                }, true);
+                            }
+                            this.byId("headerDetail").setNumber(qtdeTotal);
+                            globalModel.setProperty("/Alterado", false);
+                            this.byId('botaoGravarSugestao').setEnabled(false);
+                        },
+                        error: (oData, oResponse) => {
+                            sap.ui.core.BusyIndicator.hide();
+                            sap.m.MessageToast.show("error function");
                         }
-                        this.byId("headerDetail").setNumber(qtdeTotal);
-                        globalModel.setProperty("/Alterado", false);
-                        this.byId('botaoGravarSugestao').setEnabled(false);
-                    },
-                    error: (oData, oResponse) => {
-                        sap.ui.core.BusyIndicator.hide();
-                        sap.m.MessageToast.show("error function");
-                    }
-                });
+                    });
+                } else {
+                    this.byId('botaoGravarSugestao').setEnabled(false);
+                }
             }
         },
         reiniciaValores: function () {
