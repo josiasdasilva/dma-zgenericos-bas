@@ -526,6 +526,7 @@ sap.ui.define([
         _handleF4fornecedorEspecificoSearch: function (oEvent) {
             var aFilters = [];
             var sValue = oEvent.getParameter("value");
+            
             // Filtro Fornecedor - Nome
             // no backend a busca é feita usando OR para Código (LIFNR) e Nome (Mcod1)
             var oForn = new sap.ui.model.Filter("Mcod1", sap.ui.model.FilterOperator.Contains, sValue.toUpperCase());
@@ -533,8 +534,11 @@ sap.ui.define([
             // Filtro Comprador
             var sEkgrp = this.byId("compradorInput").getValue();
             var oCompr = new sap.ui.model.Filter("Ekgrp", sap.ui.model.FilterOperator.EQ, sEkgrp.toUpperCase());
-            //TODO Adicionar filtro fornecedor pai
             aFilters.push(oCompr);
+            var sLifnrGen = this.byId("fornecedorInput").getValue();
+            var oFilterLifnrGen = new sap.ui.model.Filter("LifnrGen", sap.ui.model.FilterOperator.EQ, sLifnrGen.toUpperCase());
+            aFilters.push(oFilterLifnrGen);
+            //TODO Adicionar filtro fornecedor pai
             oEvent.getSource().getBinding("items").filter(aFilters);
         },
         _handleF4fornecedorClose: function (oEvent) {
