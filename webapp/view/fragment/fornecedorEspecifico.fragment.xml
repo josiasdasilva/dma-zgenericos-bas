@@ -11,6 +11,7 @@
 		<StandardListItem
 			icon=""
 			title="{Lifnr}"
-			description="{Mcod1}" />
+			description="{Mcod1}"
+            info="{Regio}" />
 	</SelectDialog>
 </core:FragmentDefinition>
