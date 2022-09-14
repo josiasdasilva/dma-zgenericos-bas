@@ -20,7 +20,7 @@
 						<contentRight>
 							<Button text="Total por Loja" icon="sap-icon://retail-store" press=".onOpenDialogLojaSum" type="Emphasized"/>
 							<Button enabled="false"/>
-							<SegmentedButton id="_segPedido" selectedKey="embcmp" select="onSelValorPedido">
+							<SegmentedButton id="_segPedido" selectedKey="embcmp" selectionChange="onSelValorPedido">
 								<items>
 									<!--<SegmentedButtonItem id="_sbtnLojaSum" icon="sap-icon://retail-store" key="lojaSum" press=".onOpenDialogLojaSum"/>-->
 									<SegmentedButtonItem id="_sbtnEmbCmp" icon="sap-icon://product" key="embcmp"/>

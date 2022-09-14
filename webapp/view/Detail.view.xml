@@ -25,7 +25,7 @@
 									<l:fixContent>
 										<Bar xmlns="sap.m" id="bar1">
 											<contentRight>
-												<SegmentedButton id="_segCompra" selectedKey="unidade" select="onSelValorCompra">
+												<SegmentedButton id="_segCompra" selectedKey="unidade" selectionChange="onSelValorCompra">
 													<items>
 														<SegmentedButtonItem icon="sap-icon://product" key="unidade" id="item4"/>
 														<SegmentedButtonItem icon="sap-icon://money-bills" key="real" id="item5"/>

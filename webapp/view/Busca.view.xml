@@ -154,7 +154,7 @@
 											<FlexBox width="100%" alignItems="Center">
 												<items>
 													<MultiInput width="31rem" id="UFInput" placeholder="Escolha a UF ..."
-														suggestionItems="{ path: '/UFSet', sorter: { path: 'Bland', descending : false }}" valueHelpRequest="onF4UF" tokenChange="onF4UFTokenUpdate"
+														suggestionItems="{ path: '/UFSet', sorter: { path: 'Bland', descending : false }}" valueHelpRequest="onF4UF" tokenUpdate="onF4UFTokenUpdate"
 														valueHelpOnly="true">
 														<core:Item key="{Bland}" text="{Bezei}"/></MultiInput>
 												</items>
@@ -172,7 +172,7 @@
 												<items>
 													<MultiInput width="31rem" id="grupoLojasInput" placeholder="Escolha o Grupo ..."
 														suggestionItems="{ path: '/GrupoLojasSet', sorter: { path: 'Bandeira', descending: false }}" valueHelpRequest="onF4grupoLojas"
-														tokenChange="onF4grupoLojasTokenUpdate" valueHelpOnly="true">
+														tokenUpdate="onF4grupoLojasTokenUpdate" valueHelpOnly="true">
 														<core:Item key="{Bandeira}" text="{Descricao}"/></MultiInput>
 												</items>
 											</FlexBox>
@@ -188,7 +188,7 @@
 											<FlexBox width="100%" alignItems="Center">
 												<items>
 													<MultiInput width="31rem" id="lojasInput" placeholder="Escolha a Loja ..." suggestionItems="{ path: '/CDSet', sorter: { path: 'Werks' }}"
-														valueHelpRequest="onF4Lojas" tokenChange="onF4LojasTokenUpdate" valueHelpOnly="true">
+														valueHelpRequest="onF4Lojas" tokenUpdate="onF4LojasTokenUpdate" valueHelpOnly="true">
 														<core:Item key="{Werks}" text="{Nome}"/></MultiInput>
 												</items>
 											</FlexBox>
